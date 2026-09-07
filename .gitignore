@@ -216,3 +216,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# local secrets — never commit
+.env
+*.pem
+k8s/.local-secret.env
+**/.local-secret.env

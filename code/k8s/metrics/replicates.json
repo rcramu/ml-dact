@@ -1,0 +1,1773 @@
+{
+  "stats": {
+    "models": 5,
+    "pipeline_runs": 30,
+    "outcomes": {
+      "PROMOTED": 12,
+      "BLOCKED": 5,
+      "REJECTED": 13
+    },
+    "trained": 25,
+    "promoted": 12,
+    "rejected": 13,
+    "blocked": 5,
+    "rollback_events": 5,
+    "accuracy_paradox_rejects": 2,
+    "by_scenario": {
+      "healthy": {
+        "PROMOTED": 5
+      },
+      "volume_anomaly": {
+        "BLOCKED": 5
+      },
+      "feature_drift": {
+        "PROMOTED": 5
+      },
+      "label_imbalance": {
+        "REJECTED": 5
+      },
+      "regression": {
+        "REJECTED": 5
+      },
+      "healthy_after_rollback": {
+        "REJECTED": 3,
+        "PROMOTED": 2
+      }
+    },
+    "wilson": {
+      "reject_of_trained": [
+        0.52,
+        0.334982179531473,
+        0.6996899607103998
+      ],
+      "promote_of_runs": [
+        0.4,
+        0.24590394326083403,
+        0.5767994750172616
+      ],
+      "block_of_runs": [
+        0.16666666666666666,
+        0.07336434240351686,
+        0.33564705185680177
+      ],
+      "paradox_of_label_imbalance": [
+        0.4,
+        0.1176182311592533,
+        0.769280067791163
+      ]
+    },
+    "f1_healthy_baseline": [
+      0.7829787234042553,
+      0.8285714285714286,
+      0.8173076923076923,
+      0.7904761904761904,
+      0.7873303167420814
+    ],
+    "f1_feature_drift": [
+      0.9484029484029484,
+      0.9582309582309583,
+      0.9558823529411765,
+      0.9530864197530864,
+      0.9688249400479616
+    ],
+    "summary_api": {
+      "models_count": 5,
+      "dataset_versions_count": 30,
+      "raw_records_count": 38400,
+      "model_versions_count": 25,
+      "pipeline_runs_count": 30,
+      "evaluation_results_count": 25,
+      "deployment_events_count": 94,
+      "rollback_events_count": 5,
+      "alerts_count": 82,
+      "audit_logs_count": 35
+    },
+    "sla": {
+      "stage_thresholds": {
+        "check_trigger": 1.0,
+        "check_volume_anomaly": 5.0,
+        "compare_champion": 5.0,
+        "deploy_production": 15.0,
+        "deploy_stage": 15.0,
+        "evaluate_model": 20.0,
+        "evaluation_gate": 2.0,
+        "feature_engineering": 30.0,
+        "log_mlflow": 5.0,
+        "post_deployment_test": 10.0,
+        "prepare_dataset": 10.0,
+        "production_gate": 2.0,
+        "publish_metrics": 5.0,
+        "register_model": 5.0,
+        "train_model": 120.0,
+        "validate_dataset": 10.0
+      },
+      "violations": [
+        {
+          "id": "c6ecb911-80a4-4379-9250-6159f9619e9a",
+          "run_id": "699f1749-46ff-472a-ad91-2dbfc181b0fa",
+          "stage_name": "train_model",
+          "actual_minutes": 141.6,
+          "max_minutes": 120.0,
+          "created_at": "2026-09-07T23:08:04.654205"
+        },
+        {
+          "id": "ddf726d6-3d99-437a-a715-f20e9fb7155d",
+          "run_id": "d2d360dd-d970-4378-a58b-b1506c70af4c",
+          "stage_name": "train_model",
+          "actual_minutes": 141.6,
+          "max_minutes": 120.0,
+          "created_at": "2026-09-07T23:04:23.914956"
+        },
+        {
+          "id": "a90eb2f8-cd0a-4309-ab2c-d73f9b2532eb",
+          "run_id": "59d1a1fb-308c-46a8-bc9f-5519f8a0fdca",
+          "stage_name": "train_model",
+          "actual_minutes": 141.6,
+          "max_minutes": 120.0,
+          "created_at": "2026-09-07T23:00:29.173541"
+        },
+        {
+          "id": "ac826c79-e3a8-4973-aed4-f88b1cc37aa5",
+          "run_id": "9ef42f66-1fd7-49d9-a59a-54a14abde87d",
+          "stage_name": "train_model",
+          "actual_minutes": 141.6,
+          "max_minutes": 120.0,
+          "created_at": "2026-09-07T22:58:06.457740"
+        },
+        {
+          "id": "ee04bde9-4239-476e-be1b-ac535e2ccef7",
+          "run_id": "557897c0-97a8-4f88-8723-6ce0fcfce530",
+          "stage_name": "train_model",
+          "actual_minutes": 141.6,
+          "max_minutes": 120.0,
+          "created_at": "2026-09-07T17:17:48.853528"
+        }
+      ],
+      "compliance_pct": 83.3,
+      "total_runs": 30,
+      "runs_with_violation": 5
+    }
+  },
+  "models": [
+    {
+      "name": "churn-predictor",
+      "champion": {
+        "id": "c9440a2e-6cd1-447c-94ee-f511c7c2972d",
+        "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+        "run_id": "083a5b68-7709-4f83-8409-3f270c482dc9",
+        "dataset_version_id": "e068385a-da8b-4f1d-8fa8-c8dae21d20ba",
+        "version": 1,
+        "stage": "production",
+        "framework": "PyTorch",
+        "architecture": "Feed-forward MLP (8-16-8-1)",
+        "hyperparams": {
+          "epochs": 120,
+          "lr": 0.01
+        },
+        "mlflow_run_id": "62558bac362941588e2e5151d0e5244e",
+        "registry_version": 1,
+        "git_commit": "78645b",
+        "train_f1": 0.9269195189639223,
+        "val_f1": 0.808695652173913,
+        "test_f1": 0.7829787234042553,
+        "accuracy": 0.7733333333333333,
+        "precision": 0.7244094488188977,
+        "recall": 0.8518518518518519,
+        "roc_auc": 0.8581038303260526,
+        "pr_auc": 0.8648828703703861,
+        "is_champion": true,
+        "promoted_at": "2026-09-07T17:17:49.268955",
+        "created_at": "2026-09-07T17:17:06.277884"
+      },
+      "run_count": 6,
+      "version_count": 5,
+      "runs": [
+        {
+          "id": "083a5b68-7709-4f83-8409-3f270c482dc9",
+          "trigger_type": "schedule",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) - Experiment 1: baseline",
+          "started_at": "2026-09-07T17:16:37.684089",
+          "candidate": {
+            "version": 1,
+            "stage": "production",
+            "test_f1": 0.7829787234042553,
+            "accuracy": 0.7733333333333333,
+            "precision": 0.7244094488188977,
+            "recall": 0.8518518518518519,
+            "roc_auc": 0.8581038303260526
+          },
+          "scenario": "healthy"
+        },
+        {
+          "id": "7413fc79-39ea-49ad-9fcb-6f1be6b042c0",
+          "trigger_type": "data_availability",
+          "status": "BLOCKED",
+          "outcome": "DATA_VOLUME_ALERT",
+          "trigger_detail": "1,000,000 new labeled records available (simulated volume anomaly)",
+          "started_at": "2026-09-07T17:17:06.419759",
+          "candidate": null,
+          "scenario": "volume_anomaly"
+        },
+        {
+          "id": "40e14a63-3bbb-4151-8c6a-87cae468f7ce",
+          "trigger_type": "drift",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Feature drift detected by the Drift Monitoring tab: PSI=0.81 on customer_satisfaction/usage_score - Experiment 2/3: drift then automated retraining",
+          "started_at": "2026-09-07T17:17:06.464365",
+          "candidate": {
+            "version": 2,
+            "stage": "rolled_back",
+            "test_f1": 0.9484029484029484,
+            "accuracy": 0.9066666666666666,
+            "precision": 0.919047619047619,
+            "recall": 0.9796954314720813,
+            "roc_auc": 0.9214104423495287
+          },
+          "scenario": "feature_drift"
+        },
+        {
+          "id": "55d0d049-8525-4ac9-9422-3e41b6f37072",
+          "trigger_type": "schedule",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0)",
+          "started_at": "2026-09-07T17:17:19.130808",
+          "candidate": {
+            "version": 3,
+            "stage": "rejected",
+            "test_f1": 0.0,
+            "accuracy": 0.9777777777777777,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.6921921921921921
+          },
+          "scenario": "label_imbalance"
+        },
+        {
+          "id": "557897c0-97a8-4f88-8723-6ce0fcfce530",
+          "trigger_type": "performance",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Production F1 dipped below 0.85 - investigating with a larger labeled sample",
+          "started_at": "2026-09-07T17:17:32.657953",
+          "candidate": {
+            "version": 4,
+            "stage": "rejected",
+            "test_f1": 0.7164179104477612,
+            "accuracy": 0.6622222222222223,
+            "precision": 0.5853658536585366,
+            "recall": 0.9230769230769231,
+            "roc_auc": 0.7797202797202797
+          },
+          "scenario": "regression"
+        },
+        {
+          "id": "f2738c59-99e3-4ab4-9697-7b31af7550a8",
+          "trigger_type": "manual",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Re-run after rollback with a corrected dataset",
+          "started_at": "2026-09-07T17:17:49.373689",
+          "candidate": {
+            "version": 5,
+            "stage": "rejected",
+            "test_f1": 0.7632850241545893,
+            "accuracy": 0.7822222222222223,
+            "precision": 0.7452830188679245,
+            "recall": 0.7821782178217822,
+            "roc_auc": 0.8630629191951453
+          },
+          "scenario": "healthy_after_rollback"
+        }
+      ],
+      "versions": [
+        {
+          "id": "d27650bc-55f1-46c7-8f95-81fd6fad1aa2",
+          "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+          "run_id": "f2738c59-99e3-4ab4-9697-7b31af7550a8",
+          "dataset_version_id": "4c6b23fa-d131-4f37-884c-f778006e9a42",
+          "version": 5,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "7a878dc36a40494a8194a66027c73891",
+          "registry_version": null,
+          "git_commit": "2e4126",
+          "train_f1": 0.9298245614035088,
+          "val_f1": 0.8333333333333334,
+          "test_f1": 0.7632850241545893,
+          "accuracy": 0.7822222222222223,
+          "precision": 0.7452830188679245,
+          "recall": 0.7821782178217822,
+          "roc_auc": 0.8630629191951453,
+          "pr_auc": 0.8035948176771467,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T17:18:11.136018"
+        },
+        {
+          "id": "1bd15c7e-62fc-4a92-84cc-41edf3e761f5",
+          "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+          "run_id": "557897c0-97a8-4f88-8723-6ce0fcfce530",
+          "dataset_version_id": "023d94e2-ee09-4928-aa11-cf2237a7e014",
+          "version": 4,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "b6d5e656d1104bf4bfa789cf34d61680",
+          "registry_version": null,
+          "git_commit": "8d954a",
+          "train_f1": 0.8893320039880359,
+          "val_f1": 0.7380073800738007,
+          "test_f1": 0.7164179104477612,
+          "accuracy": 0.6622222222222223,
+          "precision": 0.5853658536585366,
+          "recall": 0.9230769230769231,
+          "roc_auc": 0.7797202797202797,
+          "pr_auc": 0.7385311714009467,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T17:17:49.239442"
+        },
+        {
+          "id": "b9613cd8-37ba-4a8e-9b12-d1aaf5cea9ec",
+          "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+          "run_id": "55d0d049-8525-4ac9-9422-3e41b6f37072",
+          "dataset_version_id": "75c4f635-34da-4237-8182-cda651ba5f5a",
+          "version": 3,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "1061edcf12d648e095db8f75054d5e3c",
+          "registry_version": null,
+          "git_commit": "e4659b",
+          "train_f1": 0.9230769230769231,
+          "val_f1": 0.5,
+          "test_f1": 0.0,
+          "accuracy": 0.9777777777777777,
+          "precision": 0.0,
+          "recall": 0.0,
+          "roc_auc": 0.6921921921921921,
+          "pr_auc": 0.09939992257065428,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T17:17:32.587457"
+        },
+        {
+          "id": "cdc21fc3-ef0e-4ae6-8176-c54183ead182",
+          "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+          "run_id": "40e14a63-3bbb-4151-8c6a-87cae468f7ce",
+          "dataset_version_id": "1d2808de-0ce1-4a72-82aa-075762e80d18",
+          "version": 2,
+          "stage": "rolled_back",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "8d2fcd45eaf349f0a331d4232d6978e1",
+          "registry_version": 2,
+          "git_commit": "7036ef",
+          "train_f1": 0.9822675980655562,
+          "val_f1": 0.9643705463182898,
+          "test_f1": 0.9484029484029484,
+          "accuracy": 0.9066666666666666,
+          "precision": 0.919047619047619,
+          "recall": 0.9796954314720813,
+          "roc_auc": 0.9214104423495287,
+          "pr_auc": 0.9849653852737148,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T17:17:18.656225",
+          "created_at": "2026-09-07T17:17:18.568740"
+        },
+        {
+          "id": "c9440a2e-6cd1-447c-94ee-f511c7c2972d",
+          "model_id": "61cd9c72-c786-4232-b6c2-3409dae4a89a",
+          "run_id": "083a5b68-7709-4f83-8409-3f270c482dc9",
+          "dataset_version_id": "e068385a-da8b-4f1d-8fa8-c8dae21d20ba",
+          "version": 1,
+          "stage": "production",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "62558bac362941588e2e5151d0e5244e",
+          "registry_version": 1,
+          "git_commit": "78645b",
+          "train_f1": 0.9269195189639223,
+          "val_f1": 0.808695652173913,
+          "test_f1": 0.7829787234042553,
+          "accuracy": 0.7733333333333333,
+          "precision": 0.7244094488188977,
+          "recall": 0.8518518518518519,
+          "roc_auc": 0.8581038303260526,
+          "pr_auc": 0.8648828703703861,
+          "is_champion": true,
+          "promoted_at": "2026-09-07T17:17:49.268955",
+          "created_at": "2026-09-07T17:17:06.277884"
+        }
+      ],
+      "drift_history": {
+        "reference_dataset_version_id": "e068385a-da8b-4f1d-8fa8-c8dae21d20ba",
+        "history": [
+          {
+            "dataset_version_id": "e068385a-da8b-4f1d-8fa8-c8dae21d20ba",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T17:16:37.721507",
+            "psi_overall": 0.0,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "904c5379-8a22-46ec-af43-65be0d9a6d0d",
+            "scenario": "volume_anomaly",
+            "created_at": "2026-09-07T17:17:06.427620",
+            "psi_overall": 0.0412,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "1d2808de-0ce1-4a72-82aa-075762e80d18",
+            "scenario": "feature_drift",
+            "created_at": "2026-09-07T17:17:06.474707",
+            "psi_overall": 0.7829,
+            "drift_level": "SIGNIFICANT"
+          },
+          {
+            "dataset_version_id": "75c4f635-34da-4237-8182-cda651ba5f5a",
+            "scenario": "label_imbalance",
+            "created_at": "2026-09-07T17:17:19.150241",
+            "psi_overall": 0.0638,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "023d94e2-ee09-4928-aa11-cf2237a7e014",
+            "scenario": "regression",
+            "created_at": "2026-09-07T17:17:32.712015",
+            "psi_overall": 0.0078,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "4c6b23fa-d131-4f37-884c-f778006e9a42",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T17:17:49.391556",
+            "psi_overall": 0.011,
+            "drift_level": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "name": "churn-predictor-r2",
+      "champion": {
+        "id": "8a99e77e-d41b-485c-9686-233d7e066172",
+        "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+        "run_id": "f566f2de-7364-4d0e-b6a7-5e7ada2e7b3f",
+        "dataset_version_id": "d79c58b1-af62-49bf-8f64-ed4babddc77a",
+        "version": 1,
+        "stage": "production",
+        "framework": "PyTorch",
+        "architecture": "Feed-forward MLP (8-16-8-1)",
+        "hyperparams": {
+          "epochs": 120,
+          "lr": 0.01
+        },
+        "mlflow_run_id": "49fc50ea9378445087244ae06ad449c3",
+        "registry_version": 1,
+        "git_commit": "676d8e",
+        "train_f1": 0.9447340980187695,
+        "val_f1": 0.8744588744588745,
+        "test_f1": 0.8285714285714286,
+        "accuracy": 0.84,
+        "precision": 0.7909090909090909,
+        "recall": 0.87,
+        "roc_auc": 0.90344,
+        "pr_auc": 0.8925356668026284,
+        "is_champion": true,
+        "promoted_at": "2026-09-07T22:58:06.773592",
+        "created_at": "2026-09-07T22:57:11.960229"
+      },
+      "run_count": 6,
+      "version_count": 5,
+      "runs": [
+        {
+          "id": "f566f2de-7364-4d0e-b6a7-5e7ada2e7b3f",
+          "trigger_type": "schedule",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) - Experiment 1: baseline [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:56:54.891414",
+          "candidate": {
+            "version": 1,
+            "stage": "production",
+            "test_f1": 0.8285714285714286,
+            "accuracy": 0.84,
+            "precision": 0.7909090909090909,
+            "recall": 0.87,
+            "roc_auc": 0.90344
+          },
+          "scenario": "healthy"
+        },
+        {
+          "id": "d359a04c-d2c0-403f-a6b4-19fe461e48b1",
+          "trigger_type": "data_availability",
+          "status": "BLOCKED",
+          "outcome": "DATA_VOLUME_ALERT",
+          "trigger_detail": "1,000,000 new labeled records available (simulated volume anomaly) [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:57:12.151206",
+          "candidate": null,
+          "scenario": "volume_anomaly"
+        },
+        {
+          "id": "a43c82de-da42-4cd4-885a-3824c60cedca",
+          "trigger_type": "drift",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Feature drift detected by the Drift Monitoring tab: PSI=0.81 on customer_satisfaction/usage_score - Experiment 2/3: drift then automated retraining [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:57:12.184966",
+          "candidate": {
+            "version": 2,
+            "stage": "rolled_back",
+            "test_f1": 0.9582309582309583,
+            "accuracy": 0.9244444444444444,
+            "precision": 0.9558823529411765,
+            "recall": 0.9605911330049262,
+            "roc_auc": 0.8821092700403045
+          },
+          "scenario": "feature_drift"
+        },
+        {
+          "id": "0f3ef6cc-09df-4cd3-a495-fd8cef4eca05",
+          "trigger_type": "schedule",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:57:26.909762",
+          "candidate": {
+            "version": 3,
+            "stage": "rejected",
+            "test_f1": 0.6,
+            "accuracy": 0.9822222222222222,
+            "precision": 0.5,
+            "recall": 0.75,
+            "roc_auc": 0.9106334841628959
+          },
+          "scenario": "label_imbalance"
+        },
+        {
+          "id": "9ef42f66-1fd7-49d9-a59a-54a14abde87d",
+          "trigger_type": "performance",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Production F1 dipped below 0.85 - investigating with a larger labeled sample [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:57:49.202992",
+          "candidate": {
+            "version": 4,
+            "stage": "rejected",
+            "test_f1": 0.672,
+            "accuracy": 0.6355555555555555,
+            "precision": 0.5793103448275863,
+            "recall": 0.8,
+            "roc_auc": 0.7166666666666668
+          },
+          "scenario": "regression"
+        },
+        {
+          "id": "134d126c-7e5d-44ed-b6ec-3116cee9c38c",
+          "trigger_type": "manual",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Re-run after rollback [churn-predictor-r2]",
+          "started_at": "2026-09-07T22:58:06.853557",
+          "candidate": {
+            "version": 5,
+            "stage": "rejected",
+            "test_f1": 0.7755102040816326,
+            "accuracy": 0.8044444444444444,
+            "precision": 0.8,
+            "recall": 0.7524752475247525,
+            "roc_auc": 0.8910092622165442
+          },
+          "scenario": "healthy_after_rollback"
+        }
+      ],
+      "versions": [
+        {
+          "id": "5aebb515-bedf-4db0-9c4e-222739505583",
+          "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+          "run_id": "134d126c-7e5d-44ed-b6ec-3116cee9c38c",
+          "dataset_version_id": "9cdbca74-596f-49ec-8c82-b64df1427840",
+          "version": 5,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "cf7e1762d2024f92ab57edae2c687982",
+          "registry_version": null,
+          "git_commit": "d40186",
+          "train_f1": 0.931237721021611,
+          "val_f1": 0.8497409326424871,
+          "test_f1": 0.7755102040816326,
+          "accuracy": 0.8044444444444444,
+          "precision": 0.8,
+          "recall": 0.7524752475247525,
+          "roc_auc": 0.8910092622165442,
+          "pr_auc": 0.8482595967497029,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T22:58:31.043957"
+        },
+        {
+          "id": "f006deb4-6807-4021-9c4a-ab48dd628642",
+          "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+          "run_id": "9ef42f66-1fd7-49d9-a59a-54a14abde87d",
+          "dataset_version_id": "71bdc9b8-062e-4238-a880-f4b7fa0370de",
+          "version": 4,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "03281b0400b24bb19e1ec20388cc902b",
+          "registry_version": null,
+          "git_commit": "de88c6",
+          "train_f1": 0.8336557059961315,
+          "val_f1": 0.6639344262295082,
+          "test_f1": 0.672,
+          "accuracy": 0.6355555555555555,
+          "precision": 0.5793103448275863,
+          "recall": 0.8,
+          "roc_auc": 0.7166666666666668,
+          "pr_auc": 0.691746754991545,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T22:58:06.755565"
+        },
+        {
+          "id": "9d61b620-8828-47bb-95b9-feb7a269f85c",
+          "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+          "run_id": "0f3ef6cc-09df-4cd3-a495-fd8cef4eca05",
+          "dataset_version_id": "371222c1-48e8-47c9-9274-5491d081c4f9",
+          "version": 3,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "057607829dc14cf6b0c11b1163e1284d",
+          "registry_version": null,
+          "git_commit": "dafbf5",
+          "train_f1": 1.0,
+          "val_f1": 0.6153846153846154,
+          "test_f1": 0.6,
+          "accuracy": 0.9822222222222222,
+          "precision": 0.5,
+          "recall": 0.75,
+          "roc_auc": 0.9106334841628959,
+          "pr_auc": 0.4916666666666667,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T22:57:49.169106"
+        },
+        {
+          "id": "bd8cdec9-12e4-4a3d-acc0-458f77dd9f46",
+          "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+          "run_id": "a43c82de-da42-4cd4-885a-3824c60cedca",
+          "dataset_version_id": "c0406074-023c-46d8-af50-597a289682cd",
+          "version": 2,
+          "stage": "rolled_back",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "e602e83f966b4f0baa149d053cf33938",
+          "registry_version": 2,
+          "git_commit": "ac185a",
+          "train_f1": 0.9863908546543277,
+          "val_f1": 0.9573934837092731,
+          "test_f1": 0.9582309582309583,
+          "accuracy": 0.9244444444444444,
+          "precision": 0.9558823529411765,
+          "recall": 0.9605911330049262,
+          "roc_auc": 0.8821092700403045,
+          "pr_auc": 0.9769569381405356,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T22:57:26.875684",
+          "created_at": "2026-09-07T22:57:26.810859"
+        },
+        {
+          "id": "8a99e77e-d41b-485c-9686-233d7e066172",
+          "model_id": "3234bee1-0976-4821-bdda-802ea49d4d05",
+          "run_id": "f566f2de-7364-4d0e-b6a7-5e7ada2e7b3f",
+          "dataset_version_id": "d79c58b1-af62-49bf-8f64-ed4babddc77a",
+          "version": 1,
+          "stage": "production",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "49fc50ea9378445087244ae06ad449c3",
+          "registry_version": 1,
+          "git_commit": "676d8e",
+          "train_f1": 0.9447340980187695,
+          "val_f1": 0.8744588744588745,
+          "test_f1": 0.8285714285714286,
+          "accuracy": 0.84,
+          "precision": 0.7909090909090909,
+          "recall": 0.87,
+          "roc_auc": 0.90344,
+          "pr_auc": 0.8925356668026284,
+          "is_champion": true,
+          "promoted_at": "2026-09-07T22:58:06.773592",
+          "created_at": "2026-09-07T22:57:11.960229"
+        }
+      ],
+      "drift_history": {
+        "reference_dataset_version_id": "d79c58b1-af62-49bf-8f64-ed4babddc77a",
+        "history": [
+          {
+            "dataset_version_id": "d79c58b1-af62-49bf-8f64-ed4babddc77a",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T22:56:54.916754",
+            "psi_overall": 0.0,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "5ebabb92-d7fa-4f35-b3c8-a77ac9d7b862",
+            "scenario": "volume_anomaly",
+            "created_at": "2026-09-07T22:57:12.156260",
+            "psi_overall": 0.047,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "c0406074-023c-46d8-af50-597a289682cd",
+            "scenario": "feature_drift",
+            "created_at": "2026-09-07T22:57:12.195736",
+            "psi_overall": 0.7479,
+            "drift_level": "SIGNIFICANT"
+          },
+          {
+            "dataset_version_id": "371222c1-48e8-47c9-9274-5491d081c4f9",
+            "scenario": "label_imbalance",
+            "created_at": "2026-09-07T22:57:26.932140",
+            "psi_overall": 0.0724,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "71bdc9b8-062e-4238-a880-f4b7fa0370de",
+            "scenario": "regression",
+            "created_at": "2026-09-07T22:57:49.319351",
+            "psi_overall": 0.0081,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "9cdbca74-596f-49ec-8c82-b64df1427840",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T22:58:06.899944",
+            "psi_overall": 0.0075,
+            "drift_level": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "name": "churn-predictor-r3",
+      "champion": {
+        "id": "e21363d2-a6df-4df5-9b9a-4833acec528d",
+        "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+        "run_id": "4c28785f-ecea-461d-9976-a0e50fe43fa2",
+        "dataset_version_id": "56d7f03e-8543-4d14-ba7b-607e595b1ab9",
+        "version": 5,
+        "stage": "production",
+        "framework": "PyTorch",
+        "architecture": "Feed-forward MLP (8-16-8-1)",
+        "hyperparams": {
+          "epochs": 120,
+          "lr": 0.01
+        },
+        "mlflow_run_id": "2c64438e2cec4be88015e9065fda117a",
+        "registry_version": 3,
+        "git_commit": "7553ef",
+        "train_f1": 0.9345991561181435,
+        "val_f1": 0.8108108108108109,
+        "test_f1": 0.8394160583941606,
+        "accuracy": 0.8044444444444444,
+        "precision": 0.7419354838709677,
+        "recall": 0.9663865546218487,
+        "roc_auc": 0.8993974948469954,
+        "pr_auc": 0.9044011265325691,
+        "is_champion": true,
+        "promoted_at": "2026-09-07T23:01:13.965034",
+        "created_at": "2026-09-07T23:01:13.841843"
+      },
+      "run_count": 6,
+      "version_count": 5,
+      "runs": [
+        {
+          "id": "b033b6bf-07b5-445b-b05a-c71836738319",
+          "trigger_type": "schedule",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) - Experiment 1: baseline [churn-predictor-r3]",
+          "started_at": "2026-09-07T22:58:31.085884",
+          "candidate": {
+            "version": 1,
+            "stage": "archived",
+            "test_f1": 0.8173076923076923,
+            "accuracy": 0.8311111111111111,
+            "precision": 0.8173076923076923,
+            "recall": 0.8173076923076923,
+            "roc_auc": 0.9136999364272091
+          },
+          "scenario": "healthy"
+        },
+        {
+          "id": "6067f0db-8aae-4b3b-abaa-f7eae5452410",
+          "trigger_type": "data_availability",
+          "status": "BLOCKED",
+          "outcome": "DATA_VOLUME_ALERT",
+          "trigger_detail": "1,000,000 new labeled records available (simulated volume anomaly) [churn-predictor-r3]",
+          "started_at": "2026-09-07T22:59:00.113180",
+          "candidate": null,
+          "scenario": "volume_anomaly"
+        },
+        {
+          "id": "2d595a8b-4883-4feb-8075-9845bebfcf17",
+          "trigger_type": "drift",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Feature drift detected by the Drift Monitoring tab: PSI=0.81 on customer_satisfaction/usage_score - Experiment 2/3: drift then automated retraining [churn-predictor-r3]",
+          "started_at": "2026-09-07T22:59:00.157490",
+          "candidate": {
+            "version": 2,
+            "stage": "rolled_back",
+            "test_f1": 0.9558823529411765,
+            "accuracy": 0.92,
+            "precision": 0.9466019417475728,
+            "recall": 0.9653465346534653,
+            "roc_auc": 0.9021739130434783
+          },
+          "scenario": "feature_drift"
+        },
+        {
+          "id": "12cdb012-d0d1-4d27-8714-754b00a19ccb",
+          "trigger_type": "schedule",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) [churn-predictor-r3]",
+          "started_at": "2026-09-07T22:59:19.520130",
+          "candidate": {
+            "version": 3,
+            "stage": "rejected",
+            "test_f1": 0.18181818181818182,
+            "accuracy": 0.96,
+            "precision": 0.3333333333333333,
+            "recall": 0.125,
+            "roc_auc": 0.7811059907834101
+          },
+          "scenario": "label_imbalance"
+        },
+        {
+          "id": "59d1a1fb-308c-46a8-bc9f-5519f8a0fdca",
+          "trigger_type": "performance",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Production F1 dipped below 0.85 - investigating with a larger labeled sample [churn-predictor-r3]",
+          "started_at": "2026-09-07T22:59:51.010102",
+          "candidate": {
+            "version": 4,
+            "stage": "rejected",
+            "test_f1": 0.6636363636363637,
+            "accuracy": 0.6711111111111111,
+            "precision": 0.6293103448275862,
+            "recall": 0.7019230769230769,
+            "roc_auc": 0.7386363636363636
+          },
+          "scenario": "regression"
+        },
+        {
+          "id": "4c28785f-ecea-461d-9976-a0e50fe43fa2",
+          "trigger_type": "manual",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Re-run after rollback [churn-predictor-r3]",
+          "started_at": "2026-09-07T23:00:29.685994",
+          "candidate": {
+            "version": 5,
+            "stage": "production",
+            "test_f1": 0.8394160583941606,
+            "accuracy": 0.8044444444444444,
+            "precision": 0.7419354838709677,
+            "recall": 0.9663865546218487,
+            "roc_auc": 0.8993974948469954
+          },
+          "scenario": "healthy_after_rollback"
+        }
+      ],
+      "versions": [
+        {
+          "id": "e21363d2-a6df-4df5-9b9a-4833acec528d",
+          "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+          "run_id": "4c28785f-ecea-461d-9976-a0e50fe43fa2",
+          "dataset_version_id": "56d7f03e-8543-4d14-ba7b-607e595b1ab9",
+          "version": 5,
+          "stage": "production",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "2c64438e2cec4be88015e9065fda117a",
+          "registry_version": 3,
+          "git_commit": "7553ef",
+          "train_f1": 0.9345991561181435,
+          "val_f1": 0.8108108108108109,
+          "test_f1": 0.8394160583941606,
+          "accuracy": 0.8044444444444444,
+          "precision": 0.7419354838709677,
+          "recall": 0.9663865546218487,
+          "roc_auc": 0.8993974948469954,
+          "pr_auc": 0.9044011265325691,
+          "is_champion": true,
+          "promoted_at": "2026-09-07T23:01:13.965034",
+          "created_at": "2026-09-07T23:01:13.841843"
+        },
+        {
+          "id": "f6d7d388-83df-47b1-8df0-e8c227c66bf5",
+          "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+          "run_id": "59d1a1fb-308c-46a8-bc9f-5519f8a0fdca",
+          "dataset_version_id": "e25d23e2-58e5-4e73-abf8-5ed82fe1ec5e",
+          "version": 4,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "d1bbd3ff1cd647eabd464e6d714da2ff",
+          "registry_version": null,
+          "git_commit": "894566",
+          "train_f1": 0.8034351145038168,
+          "val_f1": 0.7125506072874493,
+          "test_f1": 0.6636363636363637,
+          "accuracy": 0.6711111111111111,
+          "precision": 0.6293103448275862,
+          "recall": 0.7019230769230769,
+          "roc_auc": 0.7386363636363636,
+          "pr_auc": 0.7327833276124186,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:00:29.567380"
+        },
+        {
+          "id": "11595fe7-02e2-4877-82ab-116871be7166",
+          "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+          "run_id": "12cdb012-d0d1-4d27-8714-754b00a19ccb",
+          "dataset_version_id": "9d45bb61-6673-46ca-ad7b-856441f49af1",
+          "version": 3,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "723cb937d98946ef923234b592838db3",
+          "registry_version": null,
+          "git_commit": "8711d7",
+          "train_f1": 1.0,
+          "val_f1": 0.4444444444444444,
+          "test_f1": 0.18181818181818182,
+          "accuracy": 0.96,
+          "precision": 0.3333333333333333,
+          "recall": 0.125,
+          "roc_auc": 0.7811059907834101,
+          "pr_auc": 0.1504899197912684,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T22:59:50.951946"
+        },
+        {
+          "id": "54d1605b-7f5f-4ac3-b433-6d4d212a3bdd",
+          "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+          "run_id": "2d595a8b-4883-4feb-8075-9845bebfcf17",
+          "dataset_version_id": "8375ea6f-80dc-4811-b9ff-96b05ec555d8",
+          "version": 2,
+          "stage": "rolled_back",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "55e4f83a34f343d798ae2be5fb40a468",
+          "registry_version": 2,
+          "git_commit": "a9aeb6",
+          "train_f1": 0.9798803697661773,
+          "val_f1": 0.9655172413793104,
+          "test_f1": 0.9558823529411765,
+          "accuracy": 0.92,
+          "precision": 0.9466019417475728,
+          "recall": 0.9653465346534653,
+          "roc_auc": 0.9021739130434783,
+          "pr_auc": 0.9818888932368023,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T22:59:19.483469",
+          "created_at": "2026-09-07T22:59:19.232173"
+        },
+        {
+          "id": "fc3c725b-7a27-431d-a430-e09bf61eae35",
+          "model_id": "ef6cadd4-dfdf-4e28-a37d-cfd5b87b5ae5",
+          "run_id": "b033b6bf-07b5-445b-b05a-c71836738319",
+          "dataset_version_id": "6cd89ab7-90d5-472b-9146-e1b212ace8eb",
+          "version": 1,
+          "stage": "archived",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "97a788c8111f4d5e9f6a2de3e92a68a6",
+          "registry_version": 1,
+          "git_commit": "078d6b",
+          "train_f1": 0.9539078156312625,
+          "val_f1": 0.8660714285714286,
+          "test_f1": 0.8173076923076923,
+          "accuracy": 0.8311111111111111,
+          "precision": 0.8173076923076923,
+          "recall": 0.8173076923076923,
+          "roc_auc": 0.9136999364272091,
+          "pr_auc": 0.8869441671044049,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T23:00:29.616278",
+          "created_at": "2026-09-07T22:58:59.988776"
+        }
+      ],
+      "drift_history": {
+        "reference_dataset_version_id": "6cd89ab7-90d5-472b-9146-e1b212ace8eb",
+        "history": [
+          {
+            "dataset_version_id": "6cd89ab7-90d5-472b-9146-e1b212ace8eb",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T22:58:31.150138",
+            "psi_overall": 0.0,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "37eb0ef1-b706-471e-9cf9-4a58b473c544",
+            "scenario": "volume_anomaly",
+            "created_at": "2026-09-07T22:59:00.117704",
+            "psi_overall": 0.037,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "8375ea6f-80dc-4811-b9ff-96b05ec555d8",
+            "scenario": "feature_drift",
+            "created_at": "2026-09-07T22:59:00.170793",
+            "psi_overall": 0.8077,
+            "drift_level": "SIGNIFICANT"
+          },
+          {
+            "dataset_version_id": "9d45bb61-6673-46ca-ad7b-856441f49af1",
+            "scenario": "label_imbalance",
+            "created_at": "2026-09-07T22:59:19.530503",
+            "psi_overall": 0.0644,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "e25d23e2-58e5-4e73-abf8-5ed82fe1ec5e",
+            "scenario": "regression",
+            "created_at": "2026-09-07T22:59:51.118292",
+            "psi_overall": 0.0073,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "56d7f03e-8543-4d14-ba7b-607e595b1ab9",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T23:00:29.718501",
+            "psi_overall": 0.0059,
+            "drift_level": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "name": "churn-predictor-r4",
+      "champion": {
+        "id": "3c414f12-7bbe-465b-8fb5-f07ffed5ad9f",
+        "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+        "run_id": "841a872f-4d43-4eab-b16a-d01a91bf658f",
+        "dataset_version_id": "a0449fad-c785-4a6e-88a9-13e84d9bbc56",
+        "version": 1,
+        "stage": "production",
+        "framework": "PyTorch",
+        "architecture": "Feed-forward MLP (8-16-8-1)",
+        "hyperparams": {
+          "epochs": 120,
+          "lr": 0.01
+        },
+        "mlflow_run_id": "61694f6dbd194cceaf2fe1813e4e7199",
+        "registry_version": 1,
+        "git_commit": "927cfd",
+        "train_f1": 0.9210275927687916,
+        "val_f1": 0.8401826484018264,
+        "test_f1": 0.7904761904761904,
+        "accuracy": 0.8044444444444444,
+        "precision": 0.7155172413793104,
+        "recall": 0.8829787234042553,
+        "roc_auc": 0.9048643820042228,
+        "pr_auc": 0.867365201691231,
+        "is_champion": true,
+        "promoted_at": "2026-09-07T23:04:24.375031",
+        "created_at": "2026-09-07T23:02:10.039324"
+      },
+      "run_count": 6,
+      "version_count": 5,
+      "runs": [
+        {
+          "id": "841a872f-4d43-4eab-b16a-d01a91bf658f",
+          "trigger_type": "schedule",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) - Experiment 1: baseline [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:01:14.017944",
+          "candidate": {
+            "version": 1,
+            "stage": "production",
+            "test_f1": 0.7904761904761904,
+            "accuracy": 0.8044444444444444,
+            "precision": 0.7155172413793104,
+            "recall": 0.8829787234042553,
+            "roc_auc": 0.9048643820042228
+          },
+          "scenario": "healthy"
+        },
+        {
+          "id": "7ed9cb69-7c8b-488e-bf72-083abee6e8a0",
+          "trigger_type": "data_availability",
+          "status": "BLOCKED",
+          "outcome": "DATA_VOLUME_ALERT",
+          "trigger_detail": "1,000,000 new labeled records available (simulated volume anomaly) [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:02:10.249378",
+          "candidate": null,
+          "scenario": "volume_anomaly"
+        },
+        {
+          "id": "8f42b6db-8226-4eb9-af84-ec5c8cc1a341",
+          "trigger_type": "drift",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Feature drift detected by the Drift Monitoring tab: PSI=0.81 on customer_satisfaction/usage_score - Experiment 2/3: drift then automated retraining [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:02:10.641985",
+          "candidate": {
+            "version": 2,
+            "stage": "rolled_back",
+            "test_f1": 0.9530864197530864,
+            "accuracy": 0.9155555555555556,
+            "precision": 0.9554455445544554,
+            "recall": 0.9507389162561576,
+            "roc_auc": 0.8841244961934617
+          },
+          "scenario": "feature_drift"
+        },
+        {
+          "id": "a41acc0c-33e7-4467-81fa-44fdcb1284fb",
+          "trigger_type": "schedule",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:03:03.773018",
+          "candidate": {
+            "version": 3,
+            "stage": "rejected",
+            "test_f1": 0.0,
+            "accuracy": 0.9733333333333334,
+            "precision": 0.0,
+            "recall": 0.0,
+            "roc_auc": 0.9272727272727272
+          },
+          "scenario": "label_imbalance"
+        },
+        {
+          "id": "d2d360dd-d970-4378-a58b-b1506c70af4c",
+          "trigger_type": "performance",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Production F1 dipped below 0.85 - investigating with a larger labeled sample [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:03:52.302124",
+          "candidate": {
+            "version": 4,
+            "stage": "rejected",
+            "test_f1": 0.7209302325581395,
+            "accuracy": 0.68,
+            "precision": 0.6549295774647887,
+            "recall": 0.8017241379310345,
+            "roc_auc": 0.7708794685226193
+          },
+          "scenario": "regression"
+        },
+        {
+          "id": "4b8df025-e837-4d16-b7bd-693653f60b5b",
+          "trigger_type": "manual",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Re-run after rollback [churn-predictor-r4]",
+          "started_at": "2026-09-07T23:04:24.522898",
+          "candidate": {
+            "version": 5,
+            "stage": "rejected",
+            "test_f1": 0.7960199004975125,
+            "accuracy": 0.8177777777777778,
+            "precision": 0.7692307692307693,
+            "recall": 0.8247422680412371,
+            "roc_auc": 0.8853092783505154
+          },
+          "scenario": "healthy_after_rollback"
+        }
+      ],
+      "versions": [
+        {
+          "id": "a775874a-7f23-42e9-aa1b-3892dc8432ff",
+          "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+          "run_id": "4b8df025-e837-4d16-b7bd-693653f60b5b",
+          "dataset_version_id": "bc39ed11-b01f-4fbd-a95a-bfb0cc70b9b2",
+          "version": 5,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "df63d1792d4d4b17a07ffc79e3a5f019",
+          "registry_version": null,
+          "git_commit": "14892d",
+          "train_f1": 0.9085659287776708,
+          "val_f1": 0.8,
+          "test_f1": 0.7960199004975125,
+          "accuracy": 0.8177777777777778,
+          "precision": 0.7692307692307693,
+          "recall": 0.8247422680412371,
+          "roc_auc": 0.8853092783505154,
+          "pr_auc": 0.8036482599171416,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:05:03.274210"
+        },
+        {
+          "id": "cf7bc632-8f65-4722-b58d-a81fcdfecfdc",
+          "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+          "run_id": "d2d360dd-d970-4378-a58b-b1506c70af4c",
+          "dataset_version_id": "8fd86e78-b8bf-4f19-ba2a-3be6a0083719",
+          "version": 4,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "a9c0e8932c754691ab14581b4c7d3968",
+          "registry_version": null,
+          "git_commit": "80a562",
+          "train_f1": 0.8796116504854369,
+          "val_f1": 0.7338709677419355,
+          "test_f1": 0.7209302325581395,
+          "accuracy": 0.68,
+          "precision": 0.6549295774647887,
+          "recall": 0.8017241379310345,
+          "roc_auc": 0.7708794685226193,
+          "pr_auc": 0.7852052682879731,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:04:24.340472"
+        },
+        {
+          "id": "eb902f9a-f019-4a72-b2bd-0756109131d6",
+          "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+          "run_id": "a41acc0c-33e7-4467-81fa-44fdcb1284fb",
+          "dataset_version_id": "64d4098b-fbf0-4db2-8db6-824289a48f21",
+          "version": 3,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "1bd5cdc33421452d9b82ffb0dcc350e8",
+          "registry_version": null,
+          "git_commit": "7c8e39",
+          "train_f1": 1.0,
+          "val_f1": 0.4444444444444444,
+          "test_f1": 0.0,
+          "accuracy": 0.9733333333333334,
+          "precision": 0.0,
+          "recall": 0.0,
+          "roc_auc": 0.9272727272727272,
+          "pr_auc": 0.2198809523809524,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:03:52.244786"
+        },
+        {
+          "id": "2f502580-dce4-4d07-8107-8a85ffd3ceee",
+          "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+          "run_id": "8f42b6db-8226-4eb9-af84-ec5c8cc1a341",
+          "dataset_version_id": "f09b4afb-b1f4-49ab-aa44-868b7ce4eb3b",
+          "version": 2,
+          "stage": "rolled_back",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "caed25a30e214f45b7ce09b9eee2a998",
+          "registry_version": 2,
+          "git_commit": "12313d",
+          "train_f1": 0.9766431287343835,
+          "val_f1": 0.9533169533169533,
+          "test_f1": 0.9530864197530864,
+          "accuracy": 0.9155555555555556,
+          "precision": 0.9554455445544554,
+          "recall": 0.9507389162561576,
+          "roc_auc": 0.8841244961934617,
+          "pr_auc": 0.9800836433453946,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T23:03:03.716624",
+          "created_at": "2026-09-07T23:03:03.589229"
+        },
+        {
+          "id": "3c414f12-7bbe-465b-8fb5-f07ffed5ad9f",
+          "model_id": "cd987899-6dc5-4c03-bebe-40bb76d9fa5d",
+          "run_id": "841a872f-4d43-4eab-b16a-d01a91bf658f",
+          "dataset_version_id": "a0449fad-c785-4a6e-88a9-13e84d9bbc56",
+          "version": 1,
+          "stage": "production",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "61694f6dbd194cceaf2fe1813e4e7199",
+          "registry_version": 1,
+          "git_commit": "927cfd",
+          "train_f1": 0.9210275927687916,
+          "val_f1": 0.8401826484018264,
+          "test_f1": 0.7904761904761904,
+          "accuracy": 0.8044444444444444,
+          "precision": 0.7155172413793104,
+          "recall": 0.8829787234042553,
+          "roc_auc": 0.9048643820042228,
+          "pr_auc": 0.867365201691231,
+          "is_champion": true,
+          "promoted_at": "2026-09-07T23:04:24.375031",
+          "created_at": "2026-09-07T23:02:10.039324"
+        }
+      ],
+      "drift_history": {
+        "reference_dataset_version_id": "a0449fad-c785-4a6e-88a9-13e84d9bbc56",
+        "history": [
+          {
+            "dataset_version_id": "a0449fad-c785-4a6e-88a9-13e84d9bbc56",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T23:01:14.033703",
+            "psi_overall": 0.0,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "56c7553c-35a8-4252-af9b-07401cda6ddd",
+            "scenario": "volume_anomaly",
+            "created_at": "2026-09-07T23:02:10.264331",
+            "psi_overall": 0.0416,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "f09b4afb-b1f4-49ab-aa44-868b7ce4eb3b",
+            "scenario": "feature_drift",
+            "created_at": "2026-09-07T23:02:10.763715",
+            "psi_overall": 0.7491,
+            "drift_level": "SIGNIFICANT"
+          },
+          {
+            "dataset_version_id": "64d4098b-fbf0-4db2-8db6-824289a48f21",
+            "scenario": "label_imbalance",
+            "created_at": "2026-09-07T23:03:03.805416",
+            "psi_overall": 0.0679,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "8fd86e78-b8bf-4f19-ba2a-3be6a0083719",
+            "scenario": "regression",
+            "created_at": "2026-09-07T23:03:52.375478",
+            "psi_overall": 0.0096,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "bc39ed11-b01f-4fbd-a95a-bfb0cc70b9b2",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T23:04:24.558500",
+            "psi_overall": 0.0095,
+            "drift_level": "NORMAL"
+          }
+        ]
+      }
+    },
+    {
+      "name": "churn-predictor-r5",
+      "champion": {
+        "id": "7c083f95-f2c5-4949-99be-835487231a6a",
+        "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+        "run_id": "771ea5d4-344d-45f6-8f59-76412fa60854",
+        "dataset_version_id": "e74a8279-a92d-4797-8cdc-64783033c8d6",
+        "version": 5,
+        "stage": "production",
+        "framework": "PyTorch",
+        "architecture": "Feed-forward MLP (8-16-8-1)",
+        "hyperparams": {
+          "epochs": 120,
+          "lr": 0.01
+        },
+        "mlflow_run_id": "af65ab88f69c48fe9b7e14297d66fd00",
+        "registry_version": 3,
+        "git_commit": "6c703e",
+        "train_f1": 0.9132602193419741,
+        "val_f1": 0.8161434977578476,
+        "test_f1": 0.8376068376068376,
+        "accuracy": 0.8311111111111111,
+        "precision": 0.8099173553719008,
+        "recall": 0.8672566371681416,
+        "roc_auc": 0.8881953223767383,
+        "pr_auc": 0.8965487474636291,
+        "is_champion": true,
+        "promoted_at": "2026-09-07T23:08:44.999947",
+        "created_at": "2026-09-07T23:08:44.885446"
+      },
+      "run_count": 6,
+      "version_count": 5,
+      "runs": [
+        {
+          "id": "c863193f-b568-4fe0-a556-00d8bbdcc349",
+          "trigger_type": "schedule",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) - Experiment 1: baseline [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:05:03.342268",
+          "candidate": {
+            "version": 1,
+            "stage": "archived",
+            "test_f1": 0.7873303167420814,
+            "accuracy": 0.7911111111111111,
+            "precision": 0.75,
+            "recall": 0.8285714285714286,
+            "roc_auc": 0.8737301587301587
+          },
+          "scenario": "healthy"
+        },
+        {
+          "id": "82e8938d-2661-41f4-a797-9476d569c04a",
+          "trigger_type": "data_availability",
+          "status": "BLOCKED",
+          "outcome": "DATA_VOLUME_ALERT",
+          "trigger_detail": "1,000,000 new labeled records available (simulated volume anomaly) [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:05:44.689878",
+          "candidate": null,
+          "scenario": "volume_anomaly"
+        },
+        {
+          "id": "ac042b10-00bb-4835-941f-602de8c07522",
+          "trigger_type": "drift",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Feature drift detected by the Drift Monitoring tab: PSI=0.81 on customer_satisfaction/usage_score - Experiment 2/3: drift then automated retraining [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:05:44.743424",
+          "candidate": {
+            "version": 2,
+            "stage": "rolled_back",
+            "test_f1": 0.9688249400479616,
+            "accuracy": 0.9422222222222222,
+            "precision": 0.9758454106280193,
+            "recall": 0.9619047619047619,
+            "roc_auc": 0.9414285714285715
+          },
+          "scenario": "feature_drift"
+        },
+        {
+          "id": "19ad435d-f792-4dd9-a65b-dc509f6c8cdc",
+          "trigger_type": "schedule",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Weekly scheduled retraining (cron 0 2 * * 0) [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:06:26.143605",
+          "candidate": {
+            "version": 3,
+            "stage": "rejected",
+            "test_f1": 0.5454545454545454,
+            "accuracy": 0.9777777777777777,
+            "precision": 0.6,
+            "recall": 0.5,
+            "roc_auc": 0.8569254185692542
+          },
+          "scenario": "label_imbalance"
+        },
+        {
+          "id": "699f1749-46ff-472a-ad91-2dbfc181b0fa",
+          "trigger_type": "performance",
+          "status": "REJECTED",
+          "outcome": "MODEL_NOT_PROMOTED",
+          "trigger_detail": "Production F1 dipped below 0.85 - investigating with a larger labeled sample [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:07:22.808951",
+          "candidate": {
+            "version": 4,
+            "stage": "rejected",
+            "test_f1": 0.7220216606498195,
+            "accuracy": 0.6577777777777778,
+            "precision": 0.6024096385542169,
+            "recall": 0.9009009009009009,
+            "roc_auc": 0.751778093883357
+          },
+          "scenario": "regression"
+        },
+        {
+          "id": "771ea5d4-344d-45f6-8f59-76412fa60854",
+          "trigger_type": "manual",
+          "status": "SUCCESS",
+          "outcome": "PROMOTED",
+          "trigger_detail": "Re-run after rollback [churn-predictor-r5]",
+          "started_at": "2026-09-07T23:08:05.150496",
+          "candidate": {
+            "version": 5,
+            "stage": "production",
+            "test_f1": 0.8376068376068376,
+            "accuracy": 0.8311111111111111,
+            "precision": 0.8099173553719008,
+            "recall": 0.8672566371681416,
+            "roc_auc": 0.8881953223767383
+          },
+          "scenario": "healthy_after_rollback"
+        }
+      ],
+      "versions": [
+        {
+          "id": "7c083f95-f2c5-4949-99be-835487231a6a",
+          "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+          "run_id": "771ea5d4-344d-45f6-8f59-76412fa60854",
+          "dataset_version_id": "e74a8279-a92d-4797-8cdc-64783033c8d6",
+          "version": 5,
+          "stage": "production",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "af65ab88f69c48fe9b7e14297d66fd00",
+          "registry_version": 3,
+          "git_commit": "6c703e",
+          "train_f1": 0.9132602193419741,
+          "val_f1": 0.8161434977578476,
+          "test_f1": 0.8376068376068376,
+          "accuracy": 0.8311111111111111,
+          "precision": 0.8099173553719008,
+          "recall": 0.8672566371681416,
+          "roc_auc": 0.8881953223767383,
+          "pr_auc": 0.8965487474636291,
+          "is_champion": true,
+          "promoted_at": "2026-09-07T23:08:44.999947",
+          "created_at": "2026-09-07T23:08:44.885446"
+        },
+        {
+          "id": "5ab02da5-ca53-4771-ad5e-8070b28983f3",
+          "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+          "run_id": "699f1749-46ff-472a-ad91-2dbfc181b0fa",
+          "dataset_version_id": "974d8136-1bfa-4f29-9e73-81d50d7f7446",
+          "version": 4,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "baa667e4482f46738d751f82d7587312",
+          "registry_version": null,
+          "git_commit": "c6e789",
+          "train_f1": 0.8502994011976048,
+          "val_f1": 0.7376425855513308,
+          "test_f1": 0.7220216606498195,
+          "accuracy": 0.6577777777777778,
+          "precision": 0.6024096385542169,
+          "recall": 0.9009009009009009,
+          "roc_auc": 0.751778093883357,
+          "pr_auc": 0.7235099631172924,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:08:04.967001"
+        },
+        {
+          "id": "f3fde140-47e9-450e-baf2-19bdceecab01",
+          "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+          "run_id": "19ad435d-f792-4dd9-a65b-dc509f6c8cdc",
+          "dataset_version_id": "83e4adff-f1bf-4f01-91de-1505912f762a",
+          "version": 3,
+          "stage": "rejected",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "264c91af52944ad095397bdc68e21757",
+          "registry_version": null,
+          "git_commit": "0076f6",
+          "train_f1": 1.0,
+          "val_f1": 0.5,
+          "test_f1": 0.5454545454545454,
+          "accuracy": 0.9777777777777777,
+          "precision": 0.6,
+          "recall": 0.5,
+          "roc_auc": 0.8569254185692542,
+          "pr_auc": 0.4436067019400353,
+          "is_champion": false,
+          "promoted_at": null,
+          "created_at": "2026-09-07T23:07:22.780122"
+        },
+        {
+          "id": "7fe43a3a-bffc-4958-bab4-ef19ad9dfa9b",
+          "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+          "run_id": "ac042b10-00bb-4835-941f-602de8c07522",
+          "dataset_version_id": "a686dc6a-abcc-420a-95c6-62e6a789419a",
+          "version": 2,
+          "stage": "rolled_back",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "e299787b1d364ed4b4cc4f00c4bb1c6b",
+          "registry_version": 2,
+          "git_commit": "f63a86",
+          "train_f1": 0.9907658881042911,
+          "val_f1": 0.964824120603015,
+          "test_f1": 0.9688249400479616,
+          "accuracy": 0.9422222222222222,
+          "precision": 0.9758454106280193,
+          "recall": 0.9619047619047619,
+          "roc_auc": 0.9414285714285715,
+          "pr_auc": 0.9925080695471582,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T23:06:26.062780",
+          "created_at": "2026-09-07T23:06:25.989644"
+        },
+        {
+          "id": "2d132ddf-5af2-499e-8ed2-f5e651edda9c",
+          "model_id": "cfde1805-b038-4572-8887-cc5366669431",
+          "run_id": "c863193f-b568-4fe0-a556-00d8bbdcc349",
+          "dataset_version_id": "6c9dfc1e-62d0-4567-998a-898de7d1d799",
+          "version": 1,
+          "stage": "archived",
+          "framework": "PyTorch",
+          "architecture": "Feed-forward MLP (8-16-8-1)",
+          "hyperparams": {
+            "epochs": 120,
+            "lr": 0.01
+          },
+          "mlflow_run_id": "6e16d2290527413f91f8c055d4a34af6",
+          "registry_version": 1,
+          "git_commit": "20a8b2",
+          "train_f1": 0.9190207156308852,
+          "val_f1": 0.8733624454148472,
+          "test_f1": 0.7873303167420814,
+          "accuracy": 0.7911111111111111,
+          "precision": 0.75,
+          "recall": 0.8285714285714286,
+          "roc_auc": 0.8737301587301587,
+          "pr_auc": 0.8410794942206253,
+          "is_champion": false,
+          "promoted_at": "2026-09-07T23:08:05.059221",
+          "created_at": "2026-09-07T23:05:44.517281"
+        }
+      ],
+      "drift_history": {
+        "reference_dataset_version_id": "6c9dfc1e-62d0-4567-998a-898de7d1d799",
+        "history": [
+          {
+            "dataset_version_id": "6c9dfc1e-62d0-4567-998a-898de7d1d799",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T23:05:03.395378",
+            "psi_overall": 0.0,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "35a41bab-c162-4112-ab40-da887d632bfa",
+            "scenario": "volume_anomaly",
+            "created_at": "2026-09-07T23:05:44.697920",
+            "psi_overall": 0.044,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "a686dc6a-abcc-420a-95c6-62e6a789419a",
+            "scenario": "feature_drift",
+            "created_at": "2026-09-07T23:05:44.756356",
+            "psi_overall": 0.7447,
+            "drift_level": "SIGNIFICANT"
+          },
+          {
+            "dataset_version_id": "83e4adff-f1bf-4f01-91de-1505912f762a",
+            "scenario": "label_imbalance",
+            "created_at": "2026-09-07T23:06:26.181818",
+            "psi_overall": 0.0819,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "974d8136-1bfa-4f29-9e73-81d50d7f7446",
+            "scenario": "regression",
+            "created_at": "2026-09-07T23:07:22.876843",
+            "psi_overall": 0.01,
+            "drift_level": "NORMAL"
+          },
+          {
+            "dataset_version_id": "e74a8279-a92d-4797-8cdc-64783033c8d6",
+            "scenario": "healthy",
+            "created_at": "2026-09-07T23:08:05.190450",
+            "psi_overall": 0.0101,
+            "drift_level": "NORMAL"
+          }
+        ]
+      }
+    }
+  ]
+}

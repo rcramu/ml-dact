@@ -4,7 +4,7 @@ Reference implementation, synthetic check-in corpus, and kind-run snapshots for 
 
 - Stack: FastAPI, PyTorch, MLflow, Airflow, PostgreSQL. Run with Docker Compose or a local kind cluster (`dact-local-eks`). See [`code/README.md`](code/README.md).
 - No personal data. Every `customer_id` is generated.
-- Frozen scenario CSVs plus public Electricity / IBM Telco copies: [`code/dat/`](code/dat/).
+- Frozen scenario CSVs plus public Electricity / IBM Telco copies: [`code/data/`](code/data/).
 - Live pipeline runs still synthesize a batch at trigger time; these files are the reviewable copy.
 - Kind-run snapshots: [`code/k8s/metrics/`](code/k8s/metrics/).
 

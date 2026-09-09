@@ -26,7 +26,8 @@ log = logging.getLogger("telco-transfer")
 
 CSV_CANDIDATES = [
     Path("/tmp/ibm-telco-churn.csv"),
-    Path("/app/dat/ibm-telco-churn.csv"),
+    Path("/app/data/ibm-telco-churn.csv"),
+    Path(__file__).resolve().parents[1] / "data" / "ibm-telco-churn.csv",
 ]
 SEEDS = [9301, 9302, 9303, 9304, 9305]
 PLAN = [
@@ -198,7 +199,7 @@ def find_csv() -> Path:
     for path in CSV_CANDIDATES:
         if path.is_file():
             return path
-    raise FileNotFoundError("ibm-telco-churn.csv not found in /tmp or /app/dat")
+    raise FileNotFoundError("ibm-telco-churn.csv not found in /tmp, /app/data, or code/data")
 
 
 def main() -> None:

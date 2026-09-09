@@ -42,14 +42,15 @@ MONITOR = ("nswprice", "nswdemand", "vicprice", "vicdemand", "transfer", "period
 FEATURE_COLS = MONITOR  # date excluded
 F1_GOOD = 0.70
 CSV_CANDIDATES = [
-    Path("/tmp/dat/electricity.csv"),
-    Path("/app/dat/electricity.csv"),
+    Path("/tmp/data/electricity.csv"),
+    Path("/app/data/electricity.csv"),
+    Path(__file__).resolve().parents[1] / "data" / "electricity.csv",
 ]
 OUT_CANDIDATES = [
     Path("/tmp/metrics/electricity-natural.json"),
     Path("/tmp/electricity-natural.json"),
 ]
-CSV_OUT = Path("/tmp/dat/electricity.csv")
+CSV_OUT = Path("/tmp/data/electricity.csv")
 
 
 def _yes_up(value) -> int:

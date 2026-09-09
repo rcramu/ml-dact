@@ -1,6 +1,6 @@
 """Electricity (Elec2) joint-cell helpers.
 
-Loads only the frozen CSV at /app/dat/electricity.csv. No OpenML fetch, no
+Loads only the frozen CSV under data/electricity.csv. No OpenML fetch, no
 caller-supplied paths. Folds are 0..4 (five adjacent chronological transfers).
 """
 from __future__ import annotations
@@ -17,7 +17,10 @@ from .evaluation_metrics import classification_metrics
 from .gates import evaluation_gate
 from .pytorch_trainer import best_threshold_for_f1
 
-CSV_PATH = Path("/app/dat/electricity.csv")
+CSV_CANDIDATES = (
+    Path("/app/data/electricity.csv"),
+    Path(__file__).resolve().parents[3] / "data" / "electricity.csv",
+)
 N_BLOCKS = 6
 N_FOLDS = N_BLOCKS - 1
 MONITOR = ("nswprice", "nswdemand", "vicprice", "vicdemand", "transfer", "period", "day")
@@ -36,9 +39,10 @@ def _to_float(row: dict, name: str) -> float:
 
 @lru_cache(maxsize=1)
 def load_rows() -> tuple[dict, ...]:
-    if not CSV_PATH.is_file():
-        raise FileNotFoundError(f"frozen Electricity CSV missing: {CSV_PATH}")
-    with CSV_PATH.open(newline="") as handle:
+    csv_path = next((p for p in CSV_CANDIDATES if p.is_file()), None)
+    if csv_path is None:
+        raise FileNotFoundError(f"frozen Electricity CSV missing: {CSV_CANDIDATES[0]}")
+    with csv_path.open(newline="") as handle:
         rows = list(csv.DictReader(handle))
     rows = sorted(rows, key=lambda r: (_to_float(r, "date"), _to_float(r, "period")))
     return tuple(rows)

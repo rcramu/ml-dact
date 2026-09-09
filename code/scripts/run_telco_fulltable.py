@@ -34,7 +34,8 @@ log = logging.getLogger("telco-fulltable")
 
 CSV_CANDIDATES = [
     Path("/tmp/ibm-telco-churn.csv"),
-    Path("/app/dat/ibm-telco-churn.csv"),
+    Path("/app/data/ibm-telco-churn.csv"),
+    Path(__file__).resolve().parents[1] / "data" / "ibm-telco-churn.csv",
 ]
 SEEDS = [9901, 9902, 9903, 9904, 9905]
 PLAN = [

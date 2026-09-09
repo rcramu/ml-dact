@@ -4,7 +4,7 @@ These files are the **versioned, inspectable** copy of the synthetic telecom-chu
 data used by the reference implementation (manuscript Section 7.1).
 
 - No personal data. Every `customer_id` is generated.
-- Regenerated with `python scripts/export_dat.py` (requires `numpy` and the
+- Regenerated with `python scripts/export_data.py` (requires `numpy` and the
   backend package path). The deploy script also regenerates them.
 - Seeds and row counts are recorded in `manifest.json`.
 

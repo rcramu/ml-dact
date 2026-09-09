@@ -1,7 +1,8 @@
 # Drift-Aware Continuous Training Platform (reference implementation)
 
 Reference implementation for the paper **"A Closed-Loop MLOps Architecture for Drift-Aware,
-Quality-Gated Continuous Training: Design and Observational Case Study"**.
+Quality-Gated Continuous Training: Design and Observational Case Study"**
+(see [`../manuscript-elsevier.md`](../manuscript-elsevier.md)).
 
 It automates the closed loop **monitor -> detect drift (PSI/KS) -> retrain -> evaluate -> quality-gate
 -> deploy -> monitor** for a synthetic customer-churn classifier (Section 7.1 of the paper): a real
@@ -26,7 +27,7 @@ rollback — backed by PostgreSQL.
 ## Quick start (Docker Compose)
 
 ```bash
-cd code
+cd "41.research-papers/A.ML-drift-aware-continuous-training/code"
 cp .env.example .env
 docker compose up --build
 ```
@@ -63,12 +64,12 @@ The Airflow DAG (`retraining_dag`) is created **paused** — open http://localho
 and trigger a run (or wait for its weekly `0 2 * * 0` schedule) to see it call the same
 `POST /api/v1/models/{model}/training` endpoint the UI's "Trigger training" button uses.
 
-Checked-in synthetic datasets (no personal data) live in [`dat/`](dat/). Regenerate with
-`python scripts/export_dat.py` (or via `k8s/deploy-local-eks.sh`).
+Checked-in synthetic datasets (no personal data) live in [`data/`](data/). Regenerate with
+`python scripts/export_data.py` (or via `k8s/deploy-local-eks.sh`).
 
 ## Local EKS (kind)
 
-To run the same stack on local Kubernetes, collect live metrics, and keep `dat/` in sync:
+To run the same stack on local Kubernetes, collect live metrics, and keep `data/` in sync:
 
 ```bash
 ./k8s/deploy-local-eks.sh

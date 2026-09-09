@@ -1,0 +1,515 @@
+{
+  "n": 5,
+  "rows": [
+    {
+      "model": "churn-predictor",
+      "psi_overall": 0.7829,
+      "drift_level": "SIGNIFICANT",
+      "injected": [
+        {
+          "feature": "usage_score",
+          "psi": 3.5969,
+          "ks_statistic": 0.64,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5512,
+          "production_mean": 0.251,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.6167,
+          "ks_statistic": 0.6433,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6961,
+          "production_mean": 0.3977,
+          "drift_level": "SIGNIFICANT"
+        }
+      ],
+      "other_max_psi": 0.0159,
+      "other_significant": [],
+      "other_warning": [],
+      "features": [
+        {
+          "feature": "age",
+          "psi": 0.0158,
+          "ks_statistic": 0.0447,
+          "ks_p_value": 0.1003,
+          "reference_mean": 47.1687,
+          "production_mean": 46.3987,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "tenure_days",
+          "psi": 0.0124,
+          "ks_statistic": 0.0487,
+          "ks_p_value": 0.0573,
+          "reference_mean": 393.302,
+          "production_mean": 386.3593,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "monthly_charges",
+          "psi": 0.0159,
+          "ks_statistic": 0.034,
+          "ks_p_value": 0.3513,
+          "reference_mean": 83.7725,
+          "production_mean": 83.1288,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "support_tickets",
+          "psi": 0.0012,
+          "ks_statistic": 0.0087,
+          "ks_p_value": 1.0,
+          "reference_mean": 1.5067,
+          "production_mean": 1.508,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "usage_score",
+          "psi": 3.5969,
+          "ks_statistic": 0.64,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5512,
+          "production_mean": 0.251,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "service_count",
+          "psi": 0.0048,
+          "ks_statistic": 0.026,
+          "ks_p_value": 0.6913,
+          "reference_mean": 1.978,
+          "production_mean": 2.0447,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.6167,
+          "ks_statistic": 0.6433,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6961,
+          "production_mean": 0.3977,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "is_month_to_month",
+          "psi": 0.0,
+          "ks_statistic": 0.002,
+          "ks_p_value": 1.0,
+          "reference_mean": 0.398,
+          "production_mean": 0.396,
+          "drift_level": "NORMAL"
+        }
+      ]
+    },
+    {
+      "model": "churn-predictor-r2",
+      "psi_overall": 0.7479,
+      "drift_level": "SIGNIFICANT",
+      "injected": [
+        {
+          "feature": "usage_score",
+          "psi": 3.4955,
+          "ks_statistic": 0.6007,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.547,
+          "production_mean": 0.2547,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.448,
+          "ks_statistic": 0.624,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6994,
+          "production_mean": 0.4043,
+          "drift_level": "SIGNIFICANT"
+        }
+      ],
+      "other_max_psi": 0.0133,
+      "other_significant": [],
+      "other_warning": [],
+      "features": [
+        {
+          "feature": "age",
+          "psi": 0.0035,
+          "ks_statistic": 0.0193,
+          "ks_p_value": 0.942,
+          "reference_mean": 46.8547,
+          "production_mean": 46.4073,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "tenure_days",
+          "psi": 0.0094,
+          "ks_statistic": 0.028,
+          "ks_p_value": 0.5991,
+          "reference_mean": 400.17,
+          "production_mean": 392.7807,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "monthly_charges",
+          "psi": 0.0133,
+          "ks_statistic": 0.036,
+          "ks_p_value": 0.2855,
+          "reference_mean": 85.2296,
+          "production_mean": 83.88,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "support_tickets",
+          "psi": 0.0027,
+          "ks_statistic": 0.024,
+          "ks_p_value": 0.7809,
+          "reference_mean": 1.5173,
+          "production_mean": 1.4887,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "usage_score",
+          "psi": 3.4955,
+          "ks_statistic": 0.6007,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.547,
+          "production_mean": 0.2547,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "service_count",
+          "psi": 0.0105,
+          "ks_statistic": 0.028,
+          "ks_p_value": 0.5991,
+          "reference_mean": 2.0173,
+          "production_mean": 2.022,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.448,
+          "ks_statistic": 0.624,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6994,
+          "production_mean": 0.4043,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "is_month_to_month",
+          "psi": 0.0,
+          "ks_statistic": 0.0247,
+          "ks_p_value": 0.7517,
+          "reference_mean": 0.3747,
+          "production_mean": 0.3993,
+          "drift_level": "NORMAL"
+        }
+      ]
+    },
+    {
+      "model": "churn-predictor-r3",
+      "psi_overall": 0.8077,
+      "drift_level": "SIGNIFICANT",
+      "injected": [
+        {
+          "feature": "usage_score",
+          "psi": 3.8393,
+          "ks_statistic": 0.6393,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5518,
+          "production_mean": 0.252,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.5902,
+          "ks_statistic": 0.6473,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6983,
+          "production_mean": 0.4026,
+          "drift_level": "SIGNIFICANT"
+        }
+      ],
+      "other_max_psi": 0.0166,
+      "other_significant": [],
+      "other_warning": [],
+      "features": [
+        {
+          "feature": "age",
+          "psi": 0.0166,
+          "ks_statistic": 0.0233,
+          "ks_p_value": 0.809,
+          "reference_mean": 45.9847,
+          "production_mean": 46.3427,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "tenure_days",
+          "psi": 0.0031,
+          "ks_statistic": 0.0207,
+          "ks_p_value": 0.906,
+          "reference_mean": 398.5353,
+          "production_mean": 400.872,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "monthly_charges",
+          "psi": 0.0074,
+          "ks_statistic": 0.0367,
+          "ks_p_value": 0.2656,
+          "reference_mean": 84.8805,
+          "production_mean": 82.9514,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "support_tickets",
+          "psi": 0.0016,
+          "ks_statistic": 0.0133,
+          "ks_p_value": 0.9993,
+          "reference_mean": 1.5227,
+          "production_mean": 1.492,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "usage_score",
+          "psi": 3.8393,
+          "ks_statistic": 0.6393,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5518,
+          "production_mean": 0.252,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "service_count",
+          "psi": 0.0033,
+          "ks_statistic": 0.0167,
+          "ks_p_value": 0.9853,
+          "reference_mean": 2.0113,
+          "production_mean": 2.0667,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.5902,
+          "ks_statistic": 0.6473,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6983,
+          "production_mean": 0.4026,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "is_month_to_month",
+          "psi": 0.0,
+          "ks_statistic": 0.0073,
+          "ks_p_value": 1.0,
+          "reference_mean": 0.3913,
+          "production_mean": 0.384,
+          "drift_level": "NORMAL"
+        }
+      ]
+    },
+    {
+      "model": "churn-predictor-r4",
+      "psi_overall": 0.7491,
+      "drift_level": "SIGNIFICANT",
+      "injected": [
+        {
+          "feature": "usage_score",
+          "psi": 3.283,
+          "ks_statistic": 0.602,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.547,
+          "production_mean": 0.2564,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.6535,
+          "ks_statistic": 0.654,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.695,
+          "production_mean": 0.3952,
+          "drift_level": "SIGNIFICANT"
+        }
+      ],
+      "other_max_psi": 0.0205,
+      "other_significant": [],
+      "other_warning": [],
+      "features": [
+        {
+          "feature": "age",
+          "psi": 0.0082,
+          "ks_statistic": 0.02,
+          "ks_p_value": 0.9252,
+          "reference_mean": 45.8413,
+          "production_mean": 45.8687,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "tenure_days",
+          "psi": 0.015,
+          "ks_statistic": 0.0327,
+          "ks_p_value": 0.4003,
+          "reference_mean": 410.3393,
+          "production_mean": 406.1533,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "monthly_charges",
+          "psi": 0.0205,
+          "ks_statistic": 0.0333,
+          "ks_p_value": 0.3753,
+          "reference_mean": 85.0102,
+          "production_mean": 84.9393,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "support_tickets",
+          "psi": 0.0074,
+          "ks_statistic": 0.036,
+          "ks_p_value": 0.2855,
+          "reference_mean": 1.4613,
+          "production_mean": 1.54,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "usage_score",
+          "psi": 3.283,
+          "ks_statistic": 0.602,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.547,
+          "production_mean": 0.2564,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "service_count",
+          "psi": 0.0051,
+          "ks_statistic": 0.0207,
+          "ks_p_value": 0.906,
+          "reference_mean": 1.9913,
+          "production_mean": 2.014,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.6535,
+          "ks_statistic": 0.654,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.695,
+          "production_mean": 0.3952,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "is_month_to_month",
+          "psi": 0.0,
+          "ks_statistic": 0.0053,
+          "ks_p_value": 1.0,
+          "reference_mean": 0.4007,
+          "production_mean": 0.406,
+          "drift_level": "NORMAL"
+        }
+      ]
+    },
+    {
+      "model": "churn-predictor-r5",
+      "psi_overall": 0.7447,
+      "drift_level": "SIGNIFICANT",
+      "injected": [
+        {
+          "feature": "usage_score",
+          "psi": 3.3119,
+          "ks_statistic": 0.598,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5422,
+          "production_mean": 0.2555,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.5889,
+          "ks_statistic": 0.6627,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6926,
+          "production_mean": 0.396,
+          "drift_level": "SIGNIFICANT"
+        }
+      ],
+      "other_max_psi": 0.0179,
+      "other_significant": [],
+      "other_warning": [],
+      "features": [
+        {
+          "feature": "age",
+          "psi": 0.016,
+          "ks_statistic": 0.04,
+          "ks_p_value": 0.1813,
+          "reference_mean": 45.7713,
+          "production_mean": 46.786,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "tenure_days",
+          "psi": 0.0179,
+          "ks_statistic": 0.038,
+          "ks_p_value": 0.229,
+          "reference_mean": 386.026,
+          "production_mean": 396.3327,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "monthly_charges",
+          "psi": 0.0147,
+          "ks_statistic": 0.026,
+          "ks_p_value": 0.6913,
+          "reference_mean": 83.8827,
+          "production_mean": 82.4971,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "support_tickets",
+          "psi": 0.003,
+          "ks_statistic": 0.0273,
+          "ks_p_value": 0.6298,
+          "reference_mean": 1.5393,
+          "production_mean": 1.4893,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "usage_score",
+          "psi": 3.3119,
+          "ks_statistic": 0.598,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.5422,
+          "production_mean": 0.2555,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "service_count",
+          "psi": 0.0051,
+          "ks_statistic": 0.028,
+          "ks_p_value": 0.5991,
+          "reference_mean": 2.0127,
+          "production_mean": 1.9613,
+          "drift_level": "NORMAL"
+        },
+        {
+          "feature": "customer_satisfaction",
+          "psi": 2.5889,
+          "ks_statistic": 0.6627,
+          "ks_p_value": 0.0,
+          "reference_mean": 0.6926,
+          "production_mean": 0.396,
+          "drift_level": "SIGNIFICANT"
+        },
+        {
+          "feature": "is_month_to_month",
+          "psi": 0.0,
+          "ks_statistic": 0.0087,
+          "ks_p_value": 1.0,
+          "reference_mean": 0.3927,
+          "production_mean": 0.4013,
+          "drift_level": "NORMAL"
+        }
+      ]
+    }
+  ]
+}

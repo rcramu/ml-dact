@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export the paper's synthetic churn datasets into code/dat/ for version control.
+"""Export the paper's synthetic churn datasets into code/data/ for version control.
 
 Uses the same generator and documented seeds as the reference implementation
 (Section 7.1). No personal data. Deterministic and check-in safe.
@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "backend"))
 
 from app.data_generator import FEATURE_NAMES, generate_scenario  # noqa: E402
 
-OUT = ROOT / "dat"
+OUT = ROOT / "data"
 
 # Documented, fixed seeds so a checked-in CSV matches a later regeneration.
 SCENARIOS = [

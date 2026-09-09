@@ -224,5 +224,5 @@ k8s/.local-secret.env
 **/.local-secret.env
 k8s/.kind-*
 **/.kind-*
-code/backend/dat/*.csv
+code/backend/data/*.csv
 code/artifacts/

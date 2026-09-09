@@ -33,7 +33,8 @@ log = logging.getLogger("telco-calibrated")
 
 CSV_CANDIDATES = [
     Path("/tmp/ibm-telco-churn.csv"),
-    Path("/app/dat/ibm-telco-churn.csv"),
+    Path("/app/data/ibm-telco-churn.csv"),
+    Path(__file__).resolve().parents[1] / "data" / "ibm-telco-churn.csv",
 ]
 SEEDS = [9501, 9502, 9503, 9504, 9505]
 PLAN = [

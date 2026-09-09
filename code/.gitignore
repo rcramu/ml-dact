@@ -1,5 +1,5 @@
 .env
-backend/dat/*.csv
+backend/data/*.csv
 node_modules/
 dist/
 __pycache__/

@@ -23,7 +23,7 @@ chmod +x k8s/deploy-local-eks.sh k8s/collect-metrics.sh
 
 The script:
 
-1. Writes synthetic CSVs into `dat/` (check-in copy).
+1. Writes synthetic CSVs into `data/` (check-in copy).
 2. Creates kind cluster `dact-local-eks` with host ports 3066 / 8166 / 5026 / 8766 / 5476.
 3. Creates a namespace `dact` and a gitignored Secret (`k8s/.local-secret.env`).
 4. Builds `dact-backend:local` and `dact-frontend:local`, loads them into kind.

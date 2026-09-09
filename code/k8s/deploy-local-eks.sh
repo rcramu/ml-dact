@@ -60,19 +60,19 @@ EOF
     --dry-run=client -o yaml | kubectl apply -f -
 }
 
-export_dat() {
-  log "Exporting synthetic datasets to code/dat/"
+export_data() {
+  log "Exporting synthetic datasets to code/data/"
   docker run --rm \
     -v "$ROOT:/work" \
     -w /work \
     python:3.11-slim \
-    bash -c "pip install -q numpy && python scripts/export_dat.py"
+    bash -c "pip install -q numpy && python scripts/export_data.py"
 }
 
 build_images() {
   log "Building backend and frontend images"
-  mkdir -p "$ROOT/backend/dat"
-  cp "$ROOT/dat/electricity.csv" "$ROOT/backend/dat/electricity.csv"
+  mkdir -p "$ROOT/backend/data"
+  cp "$ROOT/data/electricity.csv" "$ROOT/backend/data/electricity.csv"
   docker build -t dact-backend:local "$ROOT/backend"
   docker build -t dact-frontend:local "$ROOT/frontend"
 }
@@ -102,7 +102,7 @@ main() {
   command -v kubectl >/dev/null || { log "kubectl is required"; exit 1; }
   command -v openssl >/dev/null || { log "openssl is required"; exit 1; }
   install_kind
-  export_dat
+  export_data
 
   if ! "$KIND_BIN" get clusters | grep -qx "$CLUSTER"; then
     log "Creating kind cluster $CLUSTER"

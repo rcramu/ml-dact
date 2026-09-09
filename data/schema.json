@@ -1,0 +1,14 @@
+{
+  "customer_id": "synthetic identifier, not a real person",
+  "scenario": "generator scenario id",
+  "split": "train | val | test",
+  "age": "integer years",
+  "tenure_days": "integer",
+  "monthly_charges": "float",
+  "support_tickets": "integer count",
+  "usage_score": "float 0-1",
+  "service_count": "integer",
+  "customer_satisfaction": "float 0-1",
+  "is_month_to_month": "0/1",
+  "churn": "binary label 0/1"
+}

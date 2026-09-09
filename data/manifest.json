@@ -1,0 +1,69 @@
+{
+  "generated_at": "2026-09-07T17:09:43.335861+00:00",
+  "generator": "backend/app/data_generator.py",
+  "license": "synthetic \u2014 no personal data \u2014 generated for this paper",
+  "features": [
+    "age",
+    "tenure_days",
+    "monthly_charges",
+    "support_tickets",
+    "usage_score",
+    "service_count",
+    "customer_satisfaction",
+    "is_month_to_month"
+  ],
+  "label": "churn",
+  "split": "70/15/15 train/val/test (row-level 'split' column)",
+  "scenarios": [
+    {
+      "id": "healthy",
+      "file": "healthy.csv",
+      "seed": 42,
+      "requested_rows": 1500,
+      "rows": 1500,
+      "churn_count": 698,
+      "churn_rate": 0.4653,
+      "description": "S \u2014 stable / no injected drift; P_train(X) ~ P_prod(X)"
+    },
+    {
+      "id": "feature_drift",
+      "file": "feature_drift.csv",
+      "seed": 43,
+      "requested_rows": 1500,
+      "rows": 1500,
+      "churn_count": 1349,
+      "churn_rate": 0.8993,
+      "description": "M/V \u2014 satisfaction and usage_score shifted (paper feature_drift)"
+    },
+    {
+      "id": "volume_anomaly",
+      "file": "volume_anomaly.csv",
+      "seed": 44,
+      "requested_rows": 1500,
+      "rows": 180,
+      "churn_count": 80,
+      "churn_rate": 0.4444,
+      "description": "Operational: ~12% of expected rows"
+    },
+    {
+      "id": "label_imbalance",
+      "file": "label_imbalance.csv",
+      "seed": 45,
+      "requested_rows": 1500,
+      "rows": 1500,
+      "churn_count": 30,
+      "churn_rate": 0.02,
+      "description": "Churn forced to ~2% (accuracy-paradox / rare-event case)"
+    },
+    {
+      "id": "regression",
+      "file": "regression.csv",
+      "seed": 46,
+      "requested_rows": 1500,
+      "rows": 1500,
+      "churn_count": 707,
+      "churn_rate": 0.4713,
+      "description": "Heavy label noise so a candidate should fail the gate"
+    }
+  ]
+}

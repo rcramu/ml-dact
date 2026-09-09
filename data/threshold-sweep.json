@@ -1,0 +1,189 @@
+{
+  "note": "Retrospective sweep on stored test metrics. Not a live retrain.",
+  "n_trained": 25,
+  "p_min": 0.6,
+  "r_min": 0.6,
+  "published": {
+    "f1_min": 0.7,
+    "max_regression_pct": 10.0
+  },
+  "grid": [
+    {
+      "f1_min": 0.6,
+      "max_regression_pct": 5.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.6,
+      "max_regression_pct": 10.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.6,
+      "max_regression_pct": 15.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.65,
+      "max_regression_pct": 5.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.65,
+      "max_regression_pct": 10.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.65,
+      "max_regression_pct": 15.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.7,
+      "max_regression_pct": 5.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.7,
+      "max_regression_pct": 10.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.7,
+      "max_regression_pct": 15.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.75,
+      "max_regression_pct": 5.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.75,
+      "max_regression_pct": 10.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.75,
+      "max_regression_pct": 15.0,
+      "would_pass": 12,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 0,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": []
+    },
+    {
+      "f1_min": 0.8,
+      "max_regression_pct": 5.0,
+      "would_pass": 9,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 3,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": [
+        "healthy",
+        "healthy",
+        "healthy"
+      ]
+    },
+    {
+      "f1_min": 0.8,
+      "max_regression_pct": 10.0,
+      "would_pass": 9,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 3,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": [
+        "healthy",
+        "healthy",
+        "healthy"
+      ]
+    },
+    {
+      "f1_min": 0.8,
+      "max_regression_pct": 15.0,
+      "would_pass": 9,
+      "published_pass": 12,
+      "published_fail": 13,
+      "false_pass_of_published_rejects": 0,
+      "false_block_of_published_promotes": 3,
+      "false_pass_scenarios": [],
+      "false_block_scenarios": [
+        "healthy",
+        "healthy",
+        "healthy"
+      ]
+    }
+  ]
+}

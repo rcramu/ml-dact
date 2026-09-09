@@ -1,0 +1,10 @@
+.env
+backend/dat/*.csv
+node_modules/
+dist/
+__pycache__/
+*.pyc
+artifacts/
+.DS_Store
+k8s/.local-secret.env
+k8s/.kind-*

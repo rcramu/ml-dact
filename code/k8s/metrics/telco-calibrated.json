@@ -1,0 +1,749 @@
+{
+  "corpus": "IBM Telco Customer Churn (public; 7043 rows; full one-hot schema)",
+  "family": "sklearn HistGradientBoostingClassifier",
+  "monitor": "Table 13's 9 features (mean PSI not taken over one-hot columns)",
+  "gates": {
+    "published": {
+      "f1": 0.7,
+      "precision": 0.6,
+      "recall": 0.6,
+      "max_reg": 10.0
+    },
+    "calibrated": {
+      "f1": 0.55,
+      "precision": 0.5,
+      "recall": 0.5,
+      "max_reg": 10.0
+    }
+  },
+  "note": "Calibrated floors pre-specified from Table 13 mean healthy F1 0.600. Perturbations are ours. Exploratory; not used to rescore H1-H3.",
+  "n_seeds": 5,
+  "n_runs": 30,
+  "n_features": 45,
+  "summary": {
+    "published": {
+      "healthy": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.5474,
+        "mean_psi": 0.0
+      },
+      "volume_anomaly": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 0,
+          "BLOCKED": 5
+        },
+        "mean_f1": null,
+        "mean_psi": 0.0128
+      },
+      "feature_drift": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.6089,
+        "mean_psi": 1.4062
+      },
+      "label_imbalance": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.0905,
+        "mean_psi": 0.0167
+      },
+      "regression": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.6153,
+        "mean_psi": 0.0039
+      },
+      "healthy_after_rollback": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.5542,
+        "mean_psi": 0.0032
+      }
+    },
+    "calibrated": {
+      "healthy": {
+        "outcomes": {
+          "PROMOTED": 2,
+          "REJECTED": 3,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.5474,
+        "mean_psi": 0.0
+      },
+      "volume_anomaly": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 0,
+          "BLOCKED": 5
+        },
+        "mean_f1": null,
+        "mean_psi": 0.0128
+      },
+      "feature_drift": {
+        "outcomes": {
+          "PROMOTED": 3,
+          "REJECTED": 2,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.6089,
+        "mean_psi": 1.4062
+      },
+      "label_imbalance": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.0905,
+        "mean_psi": 0.0167
+      },
+      "regression": {
+        "outcomes": {
+          "PROMOTED": 0,
+          "REJECTED": 5,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.6153,
+        "mean_psi": 0.0039
+      },
+      "healthy_after_rollback": {
+        "outcomes": {
+          "PROMOTED": 1,
+          "REJECTED": 4,
+          "BLOCKED": 0
+        },
+        "mean_f1": 0.5542,
+        "mean_psi": 0.0032
+      }
+    }
+  },
+  "rows": [
+    {
+      "seed": 9501,
+      "scenario": "healthy",
+      "n_rows": 1500,
+      "psi_mean": 0.0,
+      "drift_level": "NORMAL",
+      "f1": 0.472,
+      "accuracy": 0.6222,
+      "precision": 0.322,
+      "recall": 0.8837,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.472 < 0.70; precision 0.322 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.472 < 0.55; precision 0.322 < 0.50"
+      }
+    },
+    {
+      "seed": 9501,
+      "scenario": "volume_anomaly",
+      "n_rows": 180,
+      "psi_mean": 0.0082,
+      "drift_level": "NORMAL",
+      "f1": null,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "published": {
+        "outcome": "BLOCKED"
+      },
+      "calibrated": {
+        "outcome": "BLOCKED"
+      }
+    },
+    {
+      "seed": 9501,
+      "scenario": "feature_drift",
+      "n_rows": 1500,
+      "psi_mean": 1.3999,
+      "drift_level": "SIGNIFICANT",
+      "f1": 0.6364,
+      "accuracy": 0.7867,
+      "precision": 0.56,
+      "recall": 0.7368,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.636 < 0.70; precision 0.560 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": null,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9501,
+      "scenario": "label_imbalance",
+      "n_rows": 1500,
+      "psi_mean": 0.0199,
+      "drift_level": "NORMAL",
+      "f1": 0.2857,
+      "accuracy": 0.9778,
+      "precision": 0.3333,
+      "recall": 0.25,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.286 < 0.70; recall 0.250 < 0.60; precision 0.333 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 55.1,
+        "reasons": "F1 0.286 < 0.55; recall 0.250 < 0.50; precision 0.333 < 0.50; F1 regression 55.10% > 10.0%; recall 0.250 < champion 0.737"
+      }
+    },
+    {
+      "seed": 9501,
+      "scenario": "regression",
+      "n_rows": 1500,
+      "psi_mean": 0.0055,
+      "drift_level": "NORMAL",
+      "f1": 0.6567,
+      "accuracy": 0.4889,
+      "precision": 0.4889,
+      "recall": 1.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.657 < 0.70; precision 0.489 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": -3.2,
+        "reasons": "precision 0.489 < 0.50"
+      }
+    },
+    {
+      "seed": 9501,
+      "scenario": "healthy_after_rollback",
+      "n_rows": 1500,
+      "psi_mean": 0.0031,
+      "drift_level": "NORMAL",
+      "f1": 0.592,
+      "accuracy": 0.7733,
+      "precision": 0.6379,
+      "recall": 0.5522,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.592 < 0.70; recall 0.552 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 6.97,
+        "reasons": "recall 0.552 < champion 0.737"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "healthy",
+      "n_rows": 1500,
+      "psi_mean": 0.0,
+      "drift_level": "NORMAL",
+      "f1": 0.608,
+      "accuracy": 0.7822,
+      "precision": 0.5846,
+      "recall": 0.6333,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.608 < 0.70; precision 0.585 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": null,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "volume_anomaly",
+      "n_rows": 180,
+      "psi_mean": 0.0147,
+      "drift_level": "NORMAL",
+      "f1": null,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "published": {
+        "outcome": "BLOCKED"
+      },
+      "calibrated": {
+        "outcome": "BLOCKED"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "feature_drift",
+      "n_rows": 1500,
+      "psi_mean": 1.4103,
+      "drift_level": "SIGNIFICANT",
+      "f1": 0.6038,
+      "accuracy": 0.72,
+      "precision": 0.48,
+      "recall": 0.8136,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.604 < 0.70; precision 0.480 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 0.7,
+        "reasons": "precision 0.480 < 0.50"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "label_imbalance",
+      "n_rows": 1500,
+      "psi_mean": 0.0161,
+      "drift_level": "NORMAL",
+      "f1": 0.0,
+      "accuracy": 0.9556,
+      "precision": 0.0,
+      "recall": 0.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.000 < 0.70; recall 0.000 < 0.60; precision 0.000 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 100.0,
+        "reasons": "F1 0.000 < 0.55; recall 0.000 < 0.50; precision 0.000 < 0.50; F1 regression 100.00% > 10.0%; recall 0.000 < champion 0.633"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "regression",
+      "n_rows": 1500,
+      "psi_mean": 0.0027,
+      "drift_level": "NORMAL",
+      "f1": 0.6266,
+      "accuracy": 0.4756,
+      "precision": 0.4583,
+      "recall": 0.99,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.627 < 0.70; precision 0.458 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": -3.06,
+        "reasons": "precision 0.458 < 0.50"
+      }
+    },
+    {
+      "seed": 9502,
+      "scenario": "healthy_after_rollback",
+      "n_rows": 1500,
+      "psi_mean": 0.0027,
+      "drift_level": "NORMAL",
+      "f1": 0.672,
+      "accuracy": 0.8178,
+      "precision": 0.6562,
+      "recall": 0.6885,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.672 < 0.70"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": -10.53,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "healthy",
+      "n_rows": 1500,
+      "psi_mean": 0.0,
+      "drift_level": "NORMAL",
+      "f1": 0.5669,
+      "accuracy": 0.7556,
+      "precision": 0.45,
+      "recall": 0.766,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.567 < 0.70; precision 0.450 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "precision 0.450 < 0.50"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "volume_anomaly",
+      "n_rows": 180,
+      "psi_mean": 0.0152,
+      "drift_level": "NORMAL",
+      "f1": null,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "published": {
+        "outcome": "BLOCKED"
+      },
+      "calibrated": {
+        "outcome": "BLOCKED"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "feature_drift",
+      "n_rows": 1500,
+      "psi_mean": 1.3962,
+      "drift_level": "SIGNIFICANT",
+      "f1": 0.6623,
+      "accuracy": 0.7733,
+      "precision": 0.6098,
+      "recall": 0.7246,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.662 < 0.70"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": null,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "label_imbalance",
+      "n_rows": 1500,
+      "psi_mean": 0.0159,
+      "drift_level": "NORMAL",
+      "f1": 0.0,
+      "accuracy": 0.9467,
+      "precision": 0.0,
+      "recall": 0.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.000 < 0.70; recall 0.000 < 0.60; precision 0.000 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 100.0,
+        "reasons": "F1 0.000 < 0.55; recall 0.000 < 0.50; precision 0.000 < 0.50; F1 regression 100.00% > 10.0%; recall 0.000 < champion 0.725"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "regression",
+      "n_rows": 1500,
+      "psi_mean": 0.0021,
+      "drift_level": "NORMAL",
+      "f1": 0.5956,
+      "accuracy": 0.4267,
+      "precision": 0.4241,
+      "recall": 1.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.596 < 0.70; precision 0.424 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 10.06,
+        "reasons": "precision 0.424 < 0.50; F1 regression 10.06% > 10.0%"
+      }
+    },
+    {
+      "seed": 9503,
+      "scenario": "healthy_after_rollback",
+      "n_rows": 1500,
+      "psi_mean": 0.0044,
+      "drift_level": "NORMAL",
+      "f1": 0.5246,
+      "accuracy": 0.7422,
+      "precision": 0.4384,
+      "recall": 0.6531,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.525 < 0.70; precision 0.438 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 20.79,
+        "reasons": "F1 0.525 < 0.55; precision 0.438 < 0.50; F1 regression 20.79% > 10.0%; recall 0.653 < champion 0.725"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "healthy",
+      "n_rows": 1500,
+      "psi_mean": 0.0,
+      "drift_level": "NORMAL",
+      "f1": 0.5185,
+      "accuracy": 0.6533,
+      "precision": 0.3962,
+      "recall": 0.75,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.519 < 0.70; precision 0.396 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.519 < 0.55; precision 0.396 < 0.50"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "volume_anomaly",
+      "n_rows": 180,
+      "psi_mean": 0.0123,
+      "drift_level": "NORMAL",
+      "f1": null,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "published": {
+        "outcome": "BLOCKED"
+      },
+      "calibrated": {
+        "outcome": "BLOCKED"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "feature_drift",
+      "n_rows": 1500,
+      "psi_mean": 1.4196,
+      "drift_level": "SIGNIFICANT",
+      "f1": 0.6207,
+      "accuracy": 0.7067,
+      "precision": 0.5143,
+      "recall": 0.7826,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.621 < 0.70; precision 0.514 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": null,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "label_imbalance",
+      "n_rows": 1500,
+      "psi_mean": 0.017,
+      "drift_level": "NORMAL",
+      "f1": 0.1667,
+      "accuracy": 0.9556,
+      "precision": 0.125,
+      "recall": 0.25,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.167 < 0.70; recall 0.250 < 0.60; precision 0.125 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 73.15,
+        "reasons": "F1 0.167 < 0.55; recall 0.250 < 0.50; precision 0.125 < 0.50; F1 regression 73.15% > 10.0%; recall 0.250 < champion 0.783"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "regression",
+      "n_rows": 1500,
+      "psi_mean": 0.0034,
+      "drift_level": "NORMAL",
+      "f1": 0.5909,
+      "accuracy": 0.44,
+      "precision": 0.4313,
+      "recall": 0.9381,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.591 < 0.70; precision 0.431 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 4.8,
+        "reasons": "precision 0.431 < 0.50"
+      }
+    },
+    {
+      "seed": 9504,
+      "scenario": "healthy_after_rollback",
+      "n_rows": 1500,
+      "psi_mean": 0.0022,
+      "drift_level": "NORMAL",
+      "f1": 0.4559,
+      "accuracy": 0.6711,
+      "precision": 0.5536,
+      "recall": 0.3875,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.456 < 0.70; recall 0.388 < 0.60; precision 0.554 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 26.55,
+        "reasons": "F1 0.456 < 0.55; recall 0.388 < 0.50; F1 regression 26.55% > 10.0%; recall 0.388 < champion 0.783"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "healthy",
+      "n_rows": 1500,
+      "psi_mean": 0.0,
+      "drift_level": "NORMAL",
+      "f1": 0.5714,
+      "accuracy": 0.7867,
+      "precision": 0.5818,
+      "recall": 0.5614,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.571 < 0.70; recall 0.561 < 0.60; precision 0.582 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "PROMOTED",
+        "regression_pct": null,
+        "reasons": "pass"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "volume_anomaly",
+      "n_rows": 180,
+      "psi_mean": 0.0135,
+      "drift_level": "NORMAL",
+      "f1": null,
+      "accuracy": null,
+      "precision": null,
+      "recall": null,
+      "published": {
+        "outcome": "BLOCKED"
+      },
+      "calibrated": {
+        "outcome": "BLOCKED"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "feature_drift",
+      "n_rows": 1500,
+      "psi_mean": 1.4052,
+      "drift_level": "SIGNIFICANT",
+      "f1": 0.5211,
+      "accuracy": 0.6978,
+      "precision": 0.4458,
+      "recall": 0.6271,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.521 < 0.70; precision 0.446 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 8.8,
+        "reasons": "F1 0.521 < 0.55; precision 0.446 < 0.50"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "label_imbalance",
+      "n_rows": 1500,
+      "psi_mean": 0.0148,
+      "drift_level": "NORMAL",
+      "f1": 0.0,
+      "accuracy": 0.9511,
+      "precision": 0.0,
+      "recall": 0.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.000 < 0.70; recall 0.000 < 0.60; precision 0.000 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 100.0,
+        "reasons": "F1 0.000 < 0.55; recall 0.000 < 0.50; precision 0.000 < 0.50; F1 regression 100.00% > 10.0%; recall 0.000 < champion 0.561"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "regression",
+      "n_rows": 1500,
+      "psi_mean": 0.0056,
+      "drift_level": "NORMAL",
+      "f1": 0.6068,
+      "accuracy": 0.4356,
+      "precision": 0.4356,
+      "recall": 1.0,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.607 < 0.70; precision 0.436 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": -6.19,
+        "reasons": "precision 0.436 < 0.50"
+      }
+    },
+    {
+      "seed": 9505,
+      "scenario": "healthy_after_rollback",
+      "n_rows": 1500,
+      "psi_mean": 0.0036,
+      "drift_level": "NORMAL",
+      "f1": 0.5263,
+      "accuracy": 0.68,
+      "precision": 0.4082,
+      "recall": 0.7407,
+      "published": {
+        "outcome": "REJECTED",
+        "regression_pct": null,
+        "reasons": "F1 0.526 < 0.70; precision 0.408 < 0.60"
+      },
+      "calibrated": {
+        "outcome": "REJECTED",
+        "regression_pct": 7.89,
+        "reasons": "F1 0.526 < 0.55; precision 0.408 < 0.50"
+      }
+    }
+  ]
+}

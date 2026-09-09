@@ -1,0 +1,21 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: dact-local-eks
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 30066
+        hostPort: 3066
+        protocol: TCP
+      - containerPort: 30166
+        hostPort: 8166
+        protocol: TCP
+      - containerPort: 30026
+        hostPort: 5026
+        protocol: TCP
+      - containerPort: 30766
+        hostPort: 8766
+        protocol: TCP
+      - containerPort: 30476
+        hostPort: 5476
+        protocol: TCP

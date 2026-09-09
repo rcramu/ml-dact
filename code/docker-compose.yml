@@ -1,0 +1,120 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dact_postgres
+    environment:
+      POSTGRES_USER: dact_user
+      POSTGRES_PASSWORD: dact_pass
+      POSTGRES_DB: dact_training
+    volumes:
+      - dact_pg_data:/var/lib/postgresql/data
+      - ./db/init:/docker-entrypoint-initdb.d:ro
+    ports:
+      - "5476:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dact_user -d dact_training"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.17.2
+    container_name: dact_mlflow
+    working_dir: /mlflow
+    command: >
+      bash -c "pip install psycopg2-binary >/dev/null 2>&1 &&
+      mlflow server --host 0.0.0.0 --port 5000
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts"
+    volumes:
+      - dact_mlflow_data:/mlflow
+    ports:
+      - "5026:5000"
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: dact_backend
+    env_file:
+      - .env
+    environment:
+      CTP_DATABASE_URL: postgresql+psycopg2://dact_user:dact_pass@postgres:5432/dact_training
+      CTP_MLFLOW_TRACKING_URI: http://mlflow:5000
+    ports:
+      - "8166:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mlflow:
+        condition: service_started
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dact_frontend
+    ports:
+      - "3066:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  airflow-init:
+    image: apache/airflow:2.10.3-python3.11
+    container_name: dact_airflow_init
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment: &airflow-env
+      AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://dact_user:dact_pass@postgres:5432/airflow
+      AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+      AIRFLOW__WEBSERVER__SECRET_KEY: dact-dev-secret-key
+      _PIP_ADDITIONAL_REQUIREMENTS: "requests==2.32.3"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    entrypoint: /bin/bash
+    command: >
+      -c "airflow db migrate &&
+      airflow users create --username admin --password admin --firstname Admin --lastname User --role Admin --email admin@example.com || true"
+
+  airflow-webserver:
+    image: apache/airflow:2.10.3-python3.11
+    container_name: dact_airflow_webserver
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+    environment: *airflow-env
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    ports:
+      - "8766:8080"
+    command: webserver
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+      start_period: 60s
+
+  airflow-scheduler:
+    image: apache/airflow:2.10.3-python3.11
+    container_name: dact_airflow_scheduler
+    depends_on:
+      airflow-init:
+        condition: service_completed_successfully
+    environment: *airflow-env
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    command: scheduler
+    restart: unless-stopped
+
+volumes:
+  dact_pg_data:
+  dact_mlflow_data:
+

@@ -22,3 +22,14 @@ data used by the reference implementation (manuscript Section 7.1).
 The live platform still *generates* batches at pipeline-run time (seeded from
 the run id). These CSVs are the frozen, reviewable corpus for the paper and
 for git.
+
+`ibm-telco-churn.csv` is the public IBM Telco Customer Churn sample
+(7,043 rows; IBM / Watson Analytics community). It is used for the
+exploratory Tables 13 and 15 transfers. Scenario shifts on that file are
+ours, not naturally occurring drift. We did not collect those records.
+
+`electricity.csv` is the public Electricity (Elec2) sample (45,312 rows;
+OpenML 151; Harries et al., 1998). It is used for the exploratory Table 17
+chronological transfer. Rows stay in the published time order; we do not
+inject feature, label, or volume shifts. `date` is used only to order
+windows. We did not collect those records.

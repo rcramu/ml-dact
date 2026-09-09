@@ -1,14 +1,15 @@
 # Drift-Aware Continuous Training Platform (reference implementation)
 
-Reference implementation for the paper **"A Closed-Loop MLOps Architecture for Drift-Aware,
-Quality-Gated Continuous Training: Design and Observational Case Study"**
-(see [`../manuscript-elsevier.md`](../manuscript-elsevier.md)).
+Reference implementation for the paper **"Quality-Gated Continuous Training under Drift:
+An Observational Case Study of an Inspectable MLOps Architecture"**.
 
-It automates the closed loop **monitor -> detect drift (PSI/KS) -> retrain -> evaluate -> quality-gate
--> deploy -> monitor** for a synthetic customer-churn classifier (Section 7.1 of the paper): a real
-16-stage Airflow-orchestrated retraining DAG, real PyTorch training, MLflow experiment tracking +
-Model Registry, a multi-dimensional quality gate (Section 9), canary deployment, and automatic
-rollback — backed by PostgreSQL.
+The stack implements a gated pipeline plus PSI/KS monitoring plus a **recorded**
+`trigger_type` (including `drift`) for a synthetic customer-churn classifier
+(Section 7.1 of the paper): a 16-stage Airflow-orchestrated retraining DAG, PyTorch
+training, MLflow experiment tracking + Model Registry, a multi-dimensional quality
+gate (Section 9), canary deployment, and rollback — backed by PostgreSQL. The
+confirmatory seed labels the trigger; it does not run the paper's Section 8.4 joint
+predicate. That joint cell is an exploratory Airflow DAG on allow-listed models.
 
 ## Stack
 
@@ -27,7 +28,9 @@ rollback — backed by PostgreSQL.
 ## Quick start (Docker Compose)
 
 ```bash
-cd "41.research-papers/A.ML-drift-aware-continuous-training/code"
+git clone https://github.com/rcramu/ml-dact.git
+cd ml-dact
+cd code
 cp .env.example .env
 docker compose up --build
 ```

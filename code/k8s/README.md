@@ -16,6 +16,8 @@ It is **not** Amazon EKS. It is the local cluster path named in the manuscript
 ## Bring up, run, collect metrics
 
 ```bash
+git clone https://github.com/rcramu/ml-dact.git
+cd ml-dact
 cd code
 chmod +x k8s/deploy-local-eks.sh k8s/collect-metrics.sh
 ./k8s/deploy-local-eks.sh

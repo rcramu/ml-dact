@@ -42,6 +42,7 @@ services:
     environment:
       CTP_DATABASE_URL: postgresql+psycopg2://dact_user:dact_pass@postgres:5432/dact_training
       CTP_MLFLOW_TRACKING_URI: http://mlflow:5000
+      CTP_POLICY_VERSION: ${CTP_POLICY_VERSION:-unknown}
     ports:
       - "8166:8000"
     depends_on:

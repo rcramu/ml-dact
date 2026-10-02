@@ -8,3 +8,4 @@ artifacts/
 .DS_Store
 k8s/.local-secret.env
 k8s/.kind-*
+.venv-research/

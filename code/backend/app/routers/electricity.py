@@ -18,6 +18,8 @@ from .. import schemas
 from .. import serializers as ser
 from ..database import get_db
 from ..ml import electricity as elec
+from ..ml import policy
+from ..ml import provenance
 
 router = APIRouter(prefix="/api/v1/electricity", tags=["Electricity Joint Cell"])
 
@@ -76,6 +78,16 @@ def post_joint_retrain(body: schemas.ElectricityJointRetrainRequest, db: Session
     pe.ensure_sla_config(db)
     model = _get_or_create_model(db)
     decision = _score(fold)
+    joint_decision = m.JointDecision(
+        model_id=model.id, scenario_key=f"fold={fold}", seed=None,
+        psi_mean=decision["psi_mean"], drift_level=decision["drift_level"],
+        evaluation_level=decision["evaluation_level"], matrix_cell=decision["matrix_cell"],
+        decided_state=policy.decide_trigger_state(decision["drift_level"], decision["evaluation_level"]),
+        trained=decision["joint_retrain"],
+        policy_version=provenance.policy_version(), threshold_config_version=provenance.threshold_config_version(),
+    )
+    db.add(joint_decision)
+    db.flush()
     if not decision["joint_retrain"]:
         pe._audit(
             db,
@@ -98,6 +110,8 @@ def post_joint_retrain(body: schemas.ElectricityJointRetrainRequest, db: Session
         "joint",
         (body.trigger_detail or f"Airflow electricity_joint_dag fold={fold}")[:200],
     )
+    joint_decision.run_id = run.id
+    db.flush()
     pe._alert(
         db,
         run_id=run.id,
@@ -173,6 +187,7 @@ def post_joint_retrain(body: schemas.ElectricityJointRetrainRequest, db: Session
         regression_pct=trained["regression_pct"],
         gate_result="PASS" if gate_ok else "FAIL",
         reasons=trained["gate_reasons"] or "",
+        policy_version=provenance.policy_version(), threshold_config_version=provenance.threshold_config_version(),
     ))
     db.flush()
 

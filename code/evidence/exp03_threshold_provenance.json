@@ -1,0 +1,79 @@
+{
+  "experiment_id": "EXP-03",
+  "git_commit": "df2ad389fccb3fcc41d8c51b030d4f42202f55a2",
+  "method": "static source audit + filesystem mtime cross-check, no memory-based inference",
+  "thresholds": [
+    {
+      "parameter": "psi_warning",
+      "value": 0.10,
+      "source": "backend/app/ml/drift.py:36",
+      "rationale_comment": "paper Section 8 threshold table: PSI < 0.10 Normal",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/ml/drift.py:36-37"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    },
+    {
+      "parameter": "psi_significant",
+      "value": 0.25,
+      "source": "backend/app/ml/drift.py:36",
+      "rationale_comment": "paper Section 8 threshold table: 0.10-0.25 Warning, > 0.25 Significant",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/ml/drift.py:36,38-39"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    },
+    {
+      "parameter": "f1_floor",
+      "value": 0.70,
+      "source": "backend/app/config.py:25",
+      "rationale_comment": "req.md Sec. 16, 21-23 (req.md not present in repo; citation unverifiable)",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/config.py:24-25", ".env.example:3"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    },
+    {
+      "parameter": "precision_floor",
+      "value": 0.60,
+      "source": "backend/app/config.py:27",
+      "rationale_comment": "req.md Sec. 16, 21-23 (req.md not present in repo; citation unverifiable)",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/config.py:27"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    },
+    {
+      "parameter": "recall_floor",
+      "value": 0.60,
+      "source": "backend/app/config.py:26",
+      "rationale_comment": "req.md Sec. 16, 21-23 (req.md not present in repo; citation unverifiable)",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/config.py:26"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    },
+    {
+      "parameter": "regression_budget_pct",
+      "value": 10.0,
+      "source": "backend/app/config.py:28",
+      "rationale_comment": "req.md Sec. 16, 21-23 (req.md not present in repo; citation unverifiable)",
+      "fixed_before_primary_run": "yes_mtime_signal_only",
+      "evidence": ["backend/app/config.py:28", ".env.example:4"],
+      "defining_file_mtime": "2026-09-06T16:16:45",
+      "earliest_result_artifact": "k8s/metrics/electricity-natural.json",
+      "earliest_result_artifact_mtime": "2026-09-08T13:56:00"
+    }
+  ],
+  "disclosed_limitations": [
+    "No git history predates this audit's baseline commit (project had no VCS before df2ad38).",
+    "req.md, cited in code comments as the rationale source, could not be located anywhere in the project tree; its content and dating are unverifiable.",
+    "File mtimes are supportive but not cryptographic proof against retrospective tuning.",
+    "From commit df2ad38 forward, threshold changes are independently verifiable via git log."
+  ]
+}

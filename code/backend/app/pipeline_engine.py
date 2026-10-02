@@ -15,6 +15,7 @@ from .config import settings
 from .integrations import mlflow_utils
 from .ml import champion_store
 from .ml import gates
+from .ml import provenance
 from .ml.evaluation_metrics import classification_metrics
 from .ml.pytorch_trainer import best_threshold_for_f1, predict, predict_labels, train_model
 
@@ -308,6 +309,7 @@ def run_pipeline(db: Session, model: m.TrainedModel, *, trigger_type: str, trigg
         run_id=run.id, candidate_version_id=candidate.id, champion_version_id=champion.id if champion else None,
         candidate_metrics_json=json.dumps(candidate_metrics), champion_metrics_json=json.dumps(champion_metrics or {}),
         regression_pct=regression_pct, gate_result=gate_result, reasons=reasons,
+        policy_version=provenance.policy_version(), threshold_config_version=provenance.threshold_config_version(),
     ))
     db.flush()
 

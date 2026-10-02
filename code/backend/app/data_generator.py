@@ -1,8 +1,8 @@
 """Deterministic synthetic customer-churn data generator.
 
-Implements the Section 7.1 dataset described in the paper ("A Production-Grade
-Closed-Loop MLOps Architecture for Drift-Aware Continuous Training and
-Deployment"): a synthetic customer-churn dataset with controlled drift
+Implements the Section 7.1 dataset described in the paper ("Quality-Gated Model
+Evolution in MLOps: An Empirical Study of an Inspectable Decision Procedure for
+Distribution Shift"): a synthetic customer-churn dataset with controlled drift
 scenarios (Experiment A - no drift / B - moderate drift / C - severe drift),
 plus the operational trigger scenarios used to exercise the closed-loop
 pipeline (data-volume anomaly, class imbalance, training regression).

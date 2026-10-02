@@ -1,8 +1,8 @@
 """Drift-Aware Continuous Training Platform backend — FastAPI app entrypoint.
 
-Reference implementation for the paper "A Production-Grade Closed-Loop MLOps
-Architecture for Drift-Aware Continuous Training and Deployment Using
-Airflow, MLflow, PyTorch, and Kubernetes" (Section 7.3 / Data Availability).
+Reference implementation for the paper "Quality-Gated Model Evolution in MLOps: An
+Empirical Study of an Inspectable Decision Procedure for Distribution Shift"
+(Section 7.3 / Data Availability).
 """
 import logging
 

@@ -172,6 +172,10 @@ class EvaluationResult(Base):
     regression_pct: Mapped[float | None] = mapped_column(Float, nullable=True)
     gate_result: Mapped[str] = mapped_column(String(10), default="PASS")  # PASS/FAIL
     reasons: Mapped[str] = mapped_column(Text, default="")
+    # EXP-07 decision-lineage replay: which exact policy code + threshold values
+    # produced this gate_result, so it can be replayed later and compared.
+    policy_version: Mapped[str] = mapped_column(String(80), default="")
+    threshold_config_version: Mapped[str] = mapped_column(String(80), default="")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 
@@ -197,6 +201,30 @@ class RollbackEvent(Base):
     to_version_id: Mapped[str] = mapped_column(UUID(as_uuid=False), nullable=False)
     reason: Mapped[str] = mapped_column(String(200), default="")
     triggered_by: Mapped[str] = mapped_column(String(20), default="automatic")  # automatic/manual
+    created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
+
+
+class JointDecision(Base):
+    """Section 8.4 joint-cell trigger decision (EXP-07 decision-lineage replay).
+
+    Persisted every time POST /joint-retrain is scored, whether or not it
+    actually fires a training run -- the GET-only scoring endpoint does not
+    persist (it is explicitly read-only / does-not-train by design)."""
+    __tablename__ = "joint_decisions"
+
+    id: Mapped[str] = mapped_column(UUID(as_uuid=False), primary_key=True, default=_uuid)
+    model_id: Mapped[str] = mapped_column(UUID(as_uuid=False), ForeignKey("models.id"), nullable=False)
+    scenario_key: Mapped[str] = mapped_column(String(60), nullable=False)  # scenario name, or "fold=N" for Electricity
+    seed: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    psi_mean: Mapped[float] = mapped_column(Float, default=0.0)
+    drift_level: Mapped[str] = mapped_column(String(20), nullable=False)
+    evaluation_level: Mapped[str] = mapped_column(String(20), nullable=False)
+    matrix_cell: Mapped[str] = mapped_column(String(60), nullable=False)
+    decided_state: Mapped[str] = mapped_column(String(20), nullable=False)  # RETAIN/EVALUATE/RETRAIN
+    trained: Mapped[bool] = mapped_column(Boolean, default=False)
+    run_id: Mapped[str | None] = mapped_column(UUID(as_uuid=False), ForeignKey("pipeline_runs.id"), nullable=True)
+    policy_version: Mapped[str] = mapped_column(String(80), default="")
+    threshold_config_version: Mapped[str] = mapped_column(String(80), default="")
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
 
 

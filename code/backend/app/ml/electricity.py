@@ -15,6 +15,7 @@ from sklearn.ensemble import HistGradientBoostingClassifier
 from .drift import drift_level, psi_numeric
 from .evaluation_metrics import classification_metrics
 from .gates import evaluation_gate
+from . import policy
 from .pytorch_trainer import best_threshold_for_f1
 
 CSV_CANDIDATES = (
@@ -128,21 +129,6 @@ def score_model(model, threshold, rows: list[dict], seed: int) -> dict:
     return metrics
 
 
-def cell(drift: str, ev: str) -> str:
-    table = {
-        ("NORMAL", "GOOD"): "Continue",
-        ("NORMAL", "BAD"): "Investigate model",
-        ("NORMAL", "UNKNOWN"): "Continue monitoring",
-        ("WARNING", "GOOD"): "Continue",
-        ("WARNING", "BAD"): "Investigate model",
-        ("WARNING", "UNKNOWN"): "Continue monitoring",
-        ("SIGNIFICANT", "GOOD"): "Investigate",
-        ("SIGNIFICANT", "BAD"): "Retrain / review",
-        ("SIGNIFICANT", "UNKNOWN"): "Obtain ground truth",
-    }
-    return table.get((drift, ev), "unspecified")
-
-
 def score_fold(fold: int, train_candidate: bool = False) -> dict:
     if fold not in range(N_FOLDS):
         raise ValueError("fold must be 0, 1, 2, 3, or 4")
@@ -154,7 +140,7 @@ def score_fold(fold: int, train_candidate: bool = False) -> dict:
     dlev = drift_level(psi)
     ev = score_model(champ_model, champ_thr, prod, seed=9800 + fold)
     elev = ev["level"]
-    fire = dlev == "SIGNIFICANT" and elev != "GOOD"
+    fire = policy.should_retrain(dlev, elev)
     rec = {
         "model": MODEL_NAME,
         "fold": fold,
@@ -176,9 +162,9 @@ def score_fold(fold: int, train_candidate: bool = False) -> dict:
         "champion_precision_prod": None if ev.get("precision") is None else round(ev["precision"], 4),
         "champion_recall_prod": None if ev.get("recall") is None else round(ev["recall"], 4),
         "evaluation_level": elev,
-        "matrix_cell": cell(dlev, elev),
+        "matrix_cell": policy.joint_cell(dlev, elev),
         "joint_retrain": fire,
-        "predicate": "Retrain = (DriftLevel == SIGNIFICANT) and (EvaluationLevel != GOOD)",
+        "predicate": policy.PREDICATE_TEXT,
         "candidate_trained": False,
         "candidate_f1_prod": None,
         "candidate_precision_prod": None,

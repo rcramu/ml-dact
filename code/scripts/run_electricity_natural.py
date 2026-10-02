@@ -31,6 +31,7 @@ sys.path.insert(0, str(Path("/app")))
 from app.ml.drift import drift_level, psi_numeric
 from app.ml.evaluation_metrics import classification_metrics
 from app.ml.gates import evaluation_gate
+from app.ml import policy
 from app.ml.pytorch_trainer import best_threshold_for_f1
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
@@ -156,21 +157,6 @@ def score_model(model, threshold, rows: list[dict], seed: int) -> dict:
     return metrics
 
 
-def cell(drift: str, ev: str) -> str:
-    table = {
-        ("NORMAL", "GOOD"): "Continue",
-        ("NORMAL", "BAD"): "Investigate model",
-        ("NORMAL", "UNKNOWN"): "Continue monitoring",
-        ("WARNING", "GOOD"): "Continue",
-        ("WARNING", "BAD"): "Investigate model",
-        ("WARNING", "UNKNOWN"): "Continue monitoring",
-        ("SIGNIFICANT", "GOOD"): "Investigate",
-        ("SIGNIFICANT", "BAD"): "Retrain / review",
-        ("SIGNIFICANT", "UNKNOWN"): "Obtain ground truth",
-    }
-    return table.get((drift, ev), "unspecified")
-
-
 def main() -> None:
     rows = load_or_fetch()
     rows = sorted(rows, key=lambda r: (to_float(r, "date"), to_float(r, "period")))
@@ -191,7 +177,7 @@ def main() -> None:
         dlev = drift_level(psi)
         ev = score_model(champ_model, champ_thr, prod, seed=9800 + fold)
         elev = ev["level"]
-        fire = dlev == "SIGNIFICANT" and elev != "GOOD"
+        fire = policy.should_retrain(dlev, elev)
         cand_model, cand_thr, cand_metrics, _ = train_hgb(prod, seed=9900 + fold)
         gate, reg, reasons = evaluation_gate(
             cand_metrics,
@@ -217,7 +203,7 @@ def main() -> None:
             "champion_precision_prod": None if ev.get("precision") is None else round(ev["precision"], 4),
             "champion_recall_prod": None if ev.get("recall") is None else round(ev["recall"], 4),
             "evaluation_level": elev,
-            "matrix_cell": cell(dlev, elev),
+            "matrix_cell": policy.joint_cell(dlev, elev),
             "joint_retrain": fire,
             "candidate_f1_prod": round(cand_metrics["f1"], 4),
             "candidate_precision_prod": round(cand_metrics["precision"], 4),

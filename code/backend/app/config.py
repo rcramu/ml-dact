@@ -6,6 +6,10 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg2://ctp_user:ctp_pass@postgres:5432/continuous_training"
     random_seed: int = 42
 
+    # EXP-05/EXP-07 provenance: the host's git commit at `docker compose up` time
+    # (the container itself has no .git -- see ml/provenance.py).
+    policy_version: str = "unknown"
+
     mlflow_tracking_uri: str = "http://mlflow:5000"
     mlflow_experiment: str = "continuous-training"
 

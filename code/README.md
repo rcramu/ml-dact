@@ -1,7 +1,7 @@
 # Drift-Aware Continuous Training Platform (reference implementation)
 
-Reference implementation for the paper **"Quality-Gated Continuous Training under Drift:
-An Observational Case Study of an Inspectable MLOps Architecture"**.
+Reference implementation for the paper **"Quality-Gated Model Evolution in MLOps: An
+Empirical Study of an Inspectable Decision Procedure for Distribution Shift"**.
 
 The stack implements a gated pipeline plus PSI/KS monitoring plus a **recorded**
 `trigger_type` (including `drift`) for a synthetic customer-churn classifier

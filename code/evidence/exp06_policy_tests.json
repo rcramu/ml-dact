@@ -1,0 +1,46 @@
+{
+  "experiment_id": "EXP-06",
+  "git_commit": "808dd9f",
+  "policy_version": "backend/app/ml/policy.py@808dd9f",
+  "test_command": "pytest backend/tests/test_policy.py -v",
+  "tests_total": 26,
+  "passed": 26,
+  "failed": 0,
+  "skipped": 0,
+  "duration_seconds": 2.33,
+  "refactor_equivalence_check": {
+    "method": "ran scripts/run_electricity_natural.py before vs after extracting policy.py, same code path, no seed change",
+    "compared_against": "k8s/metrics/electricity-natural.json (pre-refactor stored artifact)",
+    "fields_compared": ["drift_level", "evaluation_level", "matrix_cell", "joint_retrain", "gate", "mean_psi", "joint_fires", "promoted", "rejected"],
+    "result": "byte-identical for all 5 folds -- refactor is behavior-preserving"
+  },
+  "coverage": {
+    "prd_table_rows_covered": [
+      "stable + healthy -> RETAIN",
+      "drift + healthy -> EVALUATE",
+      "drift + degraded -> RETRAIN",
+      "candidate below quality floor -> REJECT",
+      "candidate violates recall constraint -> REJECT",
+      "candidate passes all constraints -> PROMOTE",
+      "failed promoted candidate -> ROLLBACK"
+    ],
+    "additional_states_found_in_production_not_in_prd_table": [
+      "WARNING+GOOD -> RETAIN (warning drift alone does not change behavior vs NORMAL)",
+      "WARNING+BAD -> EVALUATE",
+      "NORMAL+BAD -> EVALUATE (performance-only degradation without drift does NOT auto-retrain under current MEDP predicate)",
+      "*+UNKNOWN (no champion / insufficient test data) -> RETAIN unless drift is SIGNIFICANT, in which case RETRAIN"
+    ],
+    "finding": "SIGNIFICANT+UNKNOWN fires retraining (should_retrain=True) even though its display label is 'Obtain ground truth', not 'Retrain / review' -- a label/behavior mismatch in the existing production code, surfaced by this test suite rather than hidden.",
+    "additional_cases_covered": [
+      "boundary (f1 floor exactly at threshold, inclusive)",
+      "threshold +/- epsilon",
+      "missing metric (raises KeyError -- undocumented/unguarded in production)",
+      "stale champion (f1<=0 treated as no champion for regression check)",
+      "duplicate candidate (same metrics, different object identity)",
+      "repeated candidate submission (idempotent, no accumulated state)",
+      "rollback after promotion",
+      "rollback with no archived predecessor (fails closed)",
+      "rollback with no current champion (fails closed)"
+    ]
+  }
+}
